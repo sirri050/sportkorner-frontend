@@ -1,0 +1,25 @@
+services:
+  sportkorner-web:
+    container_name: sportkorner-web
+    build:
+      context: .
+      args:
+        # This is for the "Baking" process (Static Generation)
+        - NEXT_PUBLIC_STRAPI_URL=${NEXT_PUBLIC_STRAPI_URL} #https://cms.go2.tn/api
+        - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+    env_file:
+      - .env
+    environment:
+      # This is for the "Running" process (Server-side fetching)
+      - NEXT_PUBLIC_STRAPI_URL=${NEXT_PUBLIC_STRAPI_URL} #https://cms.go2.tn/api
+      - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+      - RAPIDAPI_KEY=${RAPIDAPI_KEY}
+    ports:
+      - "5011:3000"
+    restart: unless-stopped
+    networks:
+      - sportkorner-net
+
+networks:
+  sportkorner-net:
+    external: true

@@ -1,0 +1,329 @@
+{
+  "Home": {
+    "trending": "Trending",
+    "now": "Now",
+    "latest": "Latest",
+    "discussions": "Discussions",
+    "startTopic": "+ Start Topic",
+    "hot": "Hot",
+    "newest": "Newest",
+    "realTimeFeed": "Real-time Feed",
+    "metadata": {
+      "title": "SportKorner",
+      "description": "The ultimate hub for sports news, discussions, and live tournament tracking."
+    },
+    "news": "News",
+    "viewAll": "View All"
+  },
+  "Header": {
+    "theArena": "The Arena",
+    "post": "Post Topic",
+    "proMember": "Pro Member",
+    "signIn": "Sign In",
+    "joinNow": "Join Now",
+    "searchPlaceholder": "Search for leagues, teams, or players...",
+    "logout": "Logout",
+    "viewProfile": "View Profile",
+    "selectLanguage": "Select Language",
+    "tournaments": "Tournaments",
+    "news": "News",
+    "worldCup": "Cup",
+    "articles": "Articles"
+  },
+  "Sidebar": {
+    "majorSports": "Major Sports",
+    "topLeagues": "Top Leagues",
+    "trendingTopics": "Trending Topics"
+  },
+  "Footer": {
+    "description": "The ultimate arena for fans to discuss, debate, and track the pulse of the global sports world. From the pitch to the court, we’ve got you covered.",
+    "sections": {
+      "arena": "The Arena",
+      "community": "Community",
+      "support": "Support"
+    },
+    "links": {
+      "allSports": "All Sports",
+      "football": "Football Hub",
+      "basketball": "Basketball",
+      "liveScores": "Live Scores",
+      "joinNow": "Join Now",
+      "signIn": "Sign In",
+      "startTopic": "Start a Topic",
+      "guidelines": "Guidelines",
+      "contact": "Contact Support",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "worldcup": "World Cup 2026"
+    },
+    "copyright": "2026 SportKorner, AN AIM HIGH COMPANY. ALL rights reserved.",
+    "status": "Systems Operational"
+  },
+  "ReplyForm": {
+    "title": "Post a Reply",
+    "placeholder": "Share your thoughts on the match...",
+    "submit": "Post Reply",
+    "error": "Something went wrong. Please try again."
+  },
+  "CreateThread": {
+    "labels": {
+      "title": "Thread Title",
+      "category": "Category",
+      "message": "Your Message"
+    },
+    "placeholders": {
+      "title": "e.g. Who's winning the Champions League this year?",
+      "selectSport": "Select a Sport...",
+      "message": "Write your thoughts here..."
+    },
+    "submit": "Publish Thread"
+  },
+  "ThreadPage": {
+    "replies": "Replies",
+    "noDescription": "No description provided.",
+    "notFound": "Thread not found"
+  },
+  "SearchPage": {
+    "title": "Search Results for:",
+    "found": "Found {count} matches",
+    "noResults": "No discussions found. Try different keywords.",
+    "resultsFor": "Searching for "
+  },
+  "Register": {
+    "title": "Join the Arena",
+    "subtitle": "Create your SportKorner account",
+    "labels": {
+      "username": "Username",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "submitButton": "Create Account",
+    "alreadyMember": "Already a member?",
+    "signInLink": "Sign In"
+  },
+  "Profile": {
+    "logout": "Logout",
+    "memberSince": "Member since",
+    "stats": {
+      "threads": "Threads",
+      "replies": "Replies"
+    },
+    "sections": {
+      "discussions": "Your Discussions",
+      "replies": "Latest Replies"
+    },
+    "empty": {
+      "threads": "You haven't started any threads yet.",
+      "replies": "No replies yet."
+    }
+  },
+  "NewThreadPage": {
+    "titleFirst": "Start a",
+    "titleHighlight": "Discussion",
+    "subtitle": "Share your insights with the SportKorner community."
+  },
+  "Login": {
+    "title": "Locker Room",
+    "subtitle": "Sign in to join the conversation",
+    "labels": {
+      "identifier": "Email or Username",
+      "password": "Password"
+    },
+    "placeholders": {
+      "identifier": "coach@sportkorner.com"
+    },
+    "forgot": "FORGOT?",
+    "submit": "Sign In",
+    "noAccount": "New to SportKorner?",
+    "createAccount": "Create an account"
+  },
+  "CategoryHub": {
+    "browse": "Browse",
+    "theArena": "The Arena",
+    "subtitle": "Select a sport to find your community and join the heat.",
+    "popularLeagues": "Popular Leagues",
+    "more": "more",
+    "stats": {
+      "leagues": "Leagues",
+      "topics": "Topics"
+    }
+  },
+  "CategoryPage": {
+    "breadcrumbs": {
+      "home": "Home",
+      "arena": "The Arena"
+    },
+    "hubs": {
+      "league": "Official League Hub",
+      "sport": "Major Sport Category"
+    },
+    "description": "Everything regarding {name}. Join the discussion with thousands of fans and experts worldwide.",
+    "exploreLeagues": "Explore Leagues",
+    "recent": "Recent",
+    "discussions": "Discussions",
+    "stats": {
+      "threads": "Threads"
+    },
+    "empty": {
+      "message": "The arena is empty... Be the first to start a topic here!",
+      "button": "Start Discussion"
+    }
+  },
+  "ThreadCard": {
+    "by": "by"
+  },
+  "Trending": {
+    "popularity": "Popularity"
+  },
+  "Widgets": {
+    "liveBreaking": "Live Breaking",
+    "viewAllNews": "View All Updates"
+  },
+  "News": {
+    "latest": "Latest",
+    "updates": "Updates",
+    "description": "Stay ahead of the game with real-time sports intelligence.",
+    "featured": "Breaking",
+    "specialCoverage": "Special Event Coverage"
+  },
+  "WorldCup": {
+    "metadata": {
+      "title": "2026 World Cup GIS Experience | SportKorner",
+      "description": "Interactive stadium mapping and geospatial analytics for the 2026 World Cup."
+    },
+    "liveGIS": "Live GIS Data Feed",
+    "worldCup": "World Cup",
+    "gisExperience": "GIS Experience",
+    "gisDescription": "Explore every host city, stadium metric, and logistical hub using our proprietary ArcGIS mapping solution.",
+    "mapTitle": "Interactive World Cup 2026 Venue Map",
+    "howToUse": "User Protocol",
+    "clickVenues": "Select individual markers to view stadium capacity, weather, and altitude data.",
+    "viewTeamInfo": "Track team training camps and regional logistics across North America.",
+    "realTimeSchedules": "Filter map layers by match dates to see venue availability.",
+    "techBy": "Powered By",
+    "mobileDisclaimer": "* Optimal functionality requires a desktop resolution.",
+    "launchAppTitle": "Launch Interactive Dashboard",
+    "launchAppDesc": "Open our standalone geospatial application to track tournament stadium telemetry, transit systems, and team dynamics.",
+    "enterExperience": "Enter Live GIS Map",
+    "subdomainNotice": "This experience is hosted on a separate subdomain to ensure optimal performance and security for our users. You will be redirected to a dedicated environment where you can explore the World Cup GIS data without any interruptions."
+  },
+  "SpotlightGrid": {
+    "the": "The",
+    "spotlight": "Spotlight",
+    "titles": {
+      "football": "Football Highlights",
+      "nba": "Play of the Day"
+    },
+    "gis": {
+      "comingSoon": "Coming Soon",
+      "worldCupTitle": "FIFA World Cup 2026",
+      "liveCoverage": "Special Coverage",
+      "viewArticles": "View All Articles"
+    },
+    "featured": "Featured: ",
+    "archiveLabel": "Premium Collection",
+    "archiveDesc": "Revisit the greatest moments and figures in sports history.",
+    "viewArchive": "View Archive",
+    "fullArchive": "Enter Full Archive"
+  },
+  "Articles": {
+    "community": "Community",
+    "voices": "Voices",
+    "latest": "Latest Articles",
+    "readMore": "Read Full Story",
+    "noArticles": "No articles published yet.",
+    "noArticlesDesc": "Be the first to share your insights with the community.",
+    "writeNew": "Write New",
+    "article": "Article",
+    "shareInsight": "Your voice matters. Share your thoughts and analysis with the global sports community.",
+    "publish": "Publish Article",
+    "submitting": "Publishing...",
+    "pendingModeration": "Your article has been submitted for review! It will appear online once approved by an admin.",
+    "ctaTitle": "Have a Sports Story?",
+    "ctaDesc": "Share your analysis, opinions, or local sports news with the SportKorner community.",
+    "ctaButton": "Write an Article",
+    "fields": {
+      "title": "Article Title",
+      "excerpt": "Short Description (Teaser)",
+      "excerptPlaceholder": "Write a catchy sentence to grab the reader's attention...",
+      "coverImage": "Cover Image",
+      "uploadHint": "Click or drag to upload a high-quality photo (JPG, PNG)",
+      "content": "Full Story Content",
+      "contentPlaceholder": "Tell your story in detail. Use clear paragraphs for better reading..."
+    },
+    "meta": {
+      "by": "By",
+      "publishedOn": "Published on"
+    },
+    "status": {
+      "pending": "Under Review",
+      "published": "Published",
+      "draft": "Draft"
+    },
+    "backToList": "Back to Community Voices",
+    "disclaimer": "This article was contributed by a community member. The views expressed do not necessarily reflect the official position of SportKorner."
+  },
+  "Tournaments": {
+    "title": "World",
+    "subtitle": "Tournaments",
+    "description": "Tracking the biggest events in global sports.",
+    "empty": {
+      "title": "No Tournaments Found",
+      "description": "We are currently updating our database with the latest 2026 World Cup qualifiers and regional cups.",
+      "button": "Return Home"
+    },
+    "globalCoverage": "Global Coverage"
+  },
+  "TournamentPage": {
+    "title": "Elite",
+    "subtitle": "Tournaments",
+    "description": "Follow live standings, results, and detailed statistics for the most prestigious leagues and cups across the globe.",
+    "globalCoverage": "Global Coverage",
+    "backToAll": "Back to Tournaments",
+    "featured": "Featured Artist:",
+    "champion": "Current Holder",
+    "teamsCount": "Total Teams",
+    "topScorer": "Top Scorer",
+    "nextMatch": "Matchday Stage",
+    "tabs": {
+      "standings": "Standings Table",
+      "fixtures": "Fixtures & Matches"
+    },
+    "table": {
+      "team": "Team",
+      "played": "P",
+      "won": "W",
+      "drawn": "D",
+      "lost": "L",
+      "goals": "GD",
+      "points": "PTS",
+      "noData": "Standings are currently blank or unreleased."
+    },
+    "fixtures": {
+      "noData": "No scheduled matches found for this cycle."
+    },
+    "sidebar": {
+      "insights": "Tournament Specs"
+    },
+    "specs": {
+      "region": "Region",
+      "tier": "Competition Tier"
+    },
+    "empty": {
+      "title": "No Tournaments Found",
+      "description": "We couldn't find any active competitions matching your criteria. Check back soon for the new season updates.",
+      "button": "Back to Home"
+    }
+  },
+  "Spotlights": {
+    "mainTitle": "Spotlight",
+    "archive": "Archive",
+    "archiveTitle": "Spotlight Archive",
+    "archiveDesc": "Revisit our most impactful deep-dives and exclusive features.",
+    "exclusive": "Exclusive Coverage",
+    "noArchive": "No spotlights archived yet.",
+    "shareArticle": "Share this article",
+    "featured": "Featured Artist:"
+  }
+}

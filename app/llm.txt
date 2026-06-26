@@ -1,0 +1,18 @@
+# SportKorner
+
+SportKorner is a premium sports journalism and GIS mapping platform focused on the 2026 World Cup and Arabic football.
+
+## Key Sections
+- /articles: Community-driven sports journalism and analysis.
+- /news: Breaking global sports news.
+- /tournaments: Tracking global sports events and qualifiers.
+- /world-cup: Interactive ESRI/GIS mapping of the 2026 World Cup venues.
+
+## Technology Stack
+- Frontend: Next.js 16 (App Router)
+- Backend: Strapi CMS
+- Maps: ESRI ArcGIS API
+- Languages: English (en), Arabic (ar)
+
+## Purpose
+To bridge the gap between technical GIS data and passionate sports journalism for the Arabic & MENA regions.
