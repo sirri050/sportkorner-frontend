@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { fetchStrapi } from '@/lib/strapi';
 
-const baseUrl = 'https://sportkorner.com';
+const baseUrl = 'https://sportkorner-frontend.vercel.app';
 const locales = ['en', 'ar'];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
