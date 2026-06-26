@@ -9,7 +9,6 @@ export function proxy(request: NextRequest) {
 }
 
 // FORCE VERCEL EDGE LAYER
-export const runtime = "edge";
 
 export const config = {
   matcher: [
