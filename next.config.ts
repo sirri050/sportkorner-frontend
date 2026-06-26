@@ -6,6 +6,17 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   serverExternalPackages: ['@swc/helpers'],
   
+  // 1. ADD THIS: Natively redirect root traffic to the default locale
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/en', 
+        permanent: false, // Keep false while debugging so browsers don't cache it forever
+      },
+    ];
+  },
+
   images: {
     dangerouslyAllowLocalIP: true,
     formats: ["image/avif", "image/webp"],
@@ -18,17 +29,15 @@ const nextConfig: NextConfig = {
         port: "1337",
         pathname: "/uploads/**",
       },
-        {
+      {
         protocol: "http",
         hostname: "localhost",
         port: "1337",
         pathname: "/uploads/**",
-  
       },
       {
         protocol: "https",
         hostname: "cms.sportkorner.com",
-        //   port: "1337",
         pathname: "/uploads/**",
       },
       {
