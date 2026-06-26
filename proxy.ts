@@ -11,6 +11,13 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Match all pathnames except api, trpc, _next, _vercel and static files
-  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+  // Match:
+  // 1. The root '/'
+  // 2. Paths starting with our supported locales: /en or /ar
+  // 3. Skip internal Next.js files (_next, _vercel), API routes, and static files with extensions (.ico, .png, etc.)
+  matcher: [
+    '/', 
+    '/(en|ar)/:path*', 
+    '/((?!api|trpc|_next|_vercel|.*\\..*).*)'
+  ]
 };
