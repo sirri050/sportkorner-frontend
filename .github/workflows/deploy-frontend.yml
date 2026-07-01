@@ -1,0 +1,68 @@
+name: Deploy Next.js Frontend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+
+      - name: Install dependencies
+        run: npm ci
+
+
+      - name: Build Next.js
+        run: npm run build
+        env:
+          NEXT_PUBLIC_STRAPI_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_URL }}
+          NEXT_PUBLIC_STRAPI_MEDIA_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_MEDIA_URL }}
+          STRAPI_API_TOKEN: ${{ secrets.STRAPI_API_TOKEN }}
+          RADIO_API_KEY: ${{ secrets.RADIO_API_KEY }}
+
+
+      - name: Remove old .next
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd ~/sportkorner-frontend
+            rm -rf .next
+
+
+      - name: Copy new build
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: ".next"
+          target: "~/sportkorner-frontend"
+
+
+      - name: Restart Next.js
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd ~/sportkorner-frontend
+            pm2 restart sportkorner-frontend || pm2 restart all
