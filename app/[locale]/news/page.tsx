@@ -3,10 +3,11 @@ import Link from "next/link";
 import { Clock, ArrowRight, Zap, Trophy, X } from "lucide-react"; // Added Trophy and X
 import { getLocale, getTranslations } from "next-intl/server";
 import { Metadata } from "next";
+import Pagination from "@/components/news-pagination";
 
 // Define the Props type for Next.js 15+ searchParams
 type Props = {
-  searchParams: Promise<{ category?: string }>;
+  searchParams: Promise<{ category?: string , page?: string }>;
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -22,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NewsPage({ searchParams }: Props) {
-  const { category } = await searchParams; // Get category from URL (?category=world-cup)
+  const { category, page } = await searchParams; // Get category from URL (?category=world-cup)
   const locale = await getLocale();
   const t = await getTranslations("News");
   const isAr = locale === "ar";
@@ -35,17 +36,23 @@ export default async function NewsPage({ searchParams }: Props) {
     };
   }
 
-  // 2. Fetch news with dynamic filters
+
+
   const response = await fetchStrapi("news", {
     sort: ["priority:desc", "createdAt:desc"],
     filters,
     locale,
-    populate: ["categories"] // Ensure categories are populated to check them
+    populate: ["categories"],
+    pagination: {
+      page: page ? (parseInt(page) > 4 ? 4 : parseInt(page)) : 1,
+      pageSize: 25,
+    },
   });
 
   const newsItems = response.data || [];
   const isWorldCupFilter = category === "world-cup";
-
+  const pagination = response.meta?.pagination || { page: 1, pageSize: 25, pageCount: 1, total: newsItems?.length };
+  console.log("meta got: ", pagination);
   return (
     <main className="max-w-7xl mx-auto py-16 px-4" dir={isAr ? 'rtl' : 'ltr'}>
 
@@ -147,6 +154,15 @@ export default async function NewsPage({ searchParams }: Props) {
           );
         })}
       </div>
+
+{pagination.pageCount > 1 && (
+  <div className="mt-12 p-6 rounded-[2.5rem] glass border border-white/5 flex justify-center">
+    <Pagination
+      currentPage={pagination.page}
+      totalPages={pagination.pageCount}
+    />
+  </div>
+)}
 
       {/* Empty State */}
       {newsItems.length === 0 && (
