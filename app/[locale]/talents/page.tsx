@@ -102,7 +102,7 @@ export default async function TalentsPage({
                         {talents.map((talent: any) => (
                             <Link
                                 key={talent.id}
-                                href={`/${locale}/spotlights/${talent.id}`}
+                                href={`/${locale}/spotlights/${talent.slug}`}
                                 className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-slate-900 hover:border-orange-500/40 transition-all duration-300"
                             >
                                 {/* IMAGE */}

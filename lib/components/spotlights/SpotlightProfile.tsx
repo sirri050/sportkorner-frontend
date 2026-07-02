@@ -8,7 +8,7 @@ export default function SpotlightProfile({ data, type, locale }: { data: any, ty
 
   return (
     <Link
-      href={`/${locale}/spotlights/${data.id}`}
+      href={`/${locale}/spotlights/${data.slug}`}
       className="block glass rounded-[2rem] p-6 border border-white/5 relative overflow-hidden group hover:border-brand-primary/40 transition-all duration-300"
     >
       {/* Background Icon Decoration */}

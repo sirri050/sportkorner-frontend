@@ -9,7 +9,7 @@ export default function SpotlightVideo({ data, title, locale }: { data: any, tit
 
   return (
     <Link
-      href={`/${locale}/spotlights/${data.id}`}
+      href={`/${locale}/spotlights/${data.slug}`}
       className="block glass rounded-[2rem] overflow-hidden border border-white/5 group hover:border-brand-primary/40 transition-all duration-300"
     >
       <div className="p-5 flex items-center justify-between border-b border-white/5">

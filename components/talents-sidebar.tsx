@@ -4,11 +4,11 @@ import { ChevronRight, Users } from "lucide-react";
 import { fetchStrapi } from "@/lib/strapi";
 
 async function TalentSideBar({
-    currentTalentId,
+    slug,
     type,
     locale,
 }: {
-    currentTalentId: string;
+    slug: string;
     type: string;
     locale: string;
 }) {
@@ -16,8 +16,8 @@ async function TalentSideBar({
         locale,
         filters: {
             type,
-            id: {
-                $ne: currentTalentId,
+            slug: {
+                $ne: slug,
             },
         },
         populate: ["coverImage"],
@@ -25,7 +25,6 @@ async function TalentSideBar({
     });
 
     const talents = res.data || [];
-
     const visibleTalents = talents.slice(0, 10);
     const hasMore = talents.length > 2;
 
@@ -55,7 +54,7 @@ async function TalentSideBar({
                 {visibleTalents.map((talent: any) => (
                     <Link
                         key={talent.id}
-                        href={`/spotlights/${talent.id}`}
+                        href={`/spotlights/${talent.slug}`}
                         className="flex items-center gap-3 px-5 py-3 hover:bg-white/5 transition group"
                     >
                         <div className="relative h-12 w-12 rounded-xl overflow-hidden bg-slate-800 flex-shrink-0">
@@ -87,6 +86,11 @@ async function TalentSideBar({
                         <ChevronRight className="size-4 text-slate-600 group-hover:text-orange-500 transition" />
                     </Link>
                 ))}
+                {visibleTalents.length === 0 && (
+                    <div className="p-5 text-center text-sm text-slate-500">
+                        No talents found.
+                    </div>
+                )}
             </div>
 
             {/* Footer */}

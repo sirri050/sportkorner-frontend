@@ -20,7 +20,7 @@ export default async function SingleSpotlightPage({
     // Fetch the entry from Strapi - make sure you pull relation payloads
     const res = await fetchStrapi("spotlights", {
         locale,
-        filters: { id: slug },
+        filters: { slug: slug },
         // populate: ["coverImage", "author", "category"],
         populate: ["coverImage"],
     });
@@ -157,7 +157,7 @@ export default async function SingleSpotlightPage({
                     {/* Shared Sidebar Block */}
                     <aside className="lg:w-80 shrink-0">
                         <div className="sticky top-24 space-y-8">
-                            {(type=="legend"  || type==="rising_star") ?<TalentSideBar currentTalentId={slug} type={type as string} locale={locale} />:<Sidebar locale={locale} />}
+                            {(type=="legend"  || type==="rising_star") ?<TalentSideBar slug={slug} type={type as string} locale={locale} />:<Sidebar locale={locale} />}
                         </div>
                     </aside>
                 </div>
