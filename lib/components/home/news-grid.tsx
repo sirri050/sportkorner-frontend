@@ -40,20 +40,20 @@ export default async function NewsGrid() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {newsItems.map((item: any, index: number) => {
-          const hasImage = !!item.coverImage?.[0]?.url;
+          const hasImage = !!item.coverImage?.url;
 
           return (
             <Link
               key={item.documentId || item.id}
               href={item.link || `/${locale}/news/${item.slug}`}
-             // target={item.link ? "_blank" : "_self"}
+              target={item.link ? "_blank" : "_self"}
               className="group glass rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-orange-500/30 transition-all flex flex-col"
             >
               {/* Image Container */}
               <div className="relative aspect-[16/10] overflow-hidden">
                 {hasImage ? (
                   <Image
-                    src={process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + (item.coverImage?.[0]?.url || item.coverImage.url)}
+                    src={process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + item.coverImage.url}
                     alt={item.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"

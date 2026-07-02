@@ -5,7 +5,7 @@ import { Calendar, ExternalLink } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import { Metadata } from "next";
-import NewsGallery from "@/components/news-gallery";
+import DynamicZoneRenderer from "@/components/dynamic-zone-render";
 
 // --- DYNAMIC SEO ---
 export async function generateMetadata({
@@ -24,14 +24,10 @@ export async function generateMetadata({
 
   const article = response.data?.[0];
   if (!article) return { title: "News Not Found" };
-  const imageUrls =
-    Array.isArray(article.coverImage) && article.coverImage.length > 0
-      ? article.coverImage.map(
-          (img: any) => process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + img.url,
-        )
-      : article.coverImage?.url
-        ? [process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + article.coverImage.url]
-        : ["/og-image.jpg"];
+
+  const imageUrl = article.coverImage?.url
+    ? process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + article.coverImage.url
+    : "/og-image.jpg";
 
   return {
     title: article.title,
@@ -41,14 +37,12 @@ export async function generateMetadata({
       description: article.excerpt,
       type: "article",
       publishedTime: article.createdAt,
-      images: [
-        imageUrls.map((img: any) => ({ url: img, width: 1200, height: 630 })),
-      ],
+      images: [{ url: imageUrl, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
-      images: [...imageUrls],
+      images: [imageUrl],
     },
   };
 }
@@ -65,27 +59,29 @@ export default async function SingleNews({
   const response = await fetchStrapi("news", {
     filters: { slug: { $eq: slug } },
     locale,
-    populate: ["coverImage"],
+    populate: {
+      coverImage: true,
+      articleContent: {
+        populate: "*",
+      },
+    },
   });
+
+  console.log("response", response.data);
 
   const article = response.data?.[0];
   if (!article) notFound();
 
-  const imageUrls =
-    Array.isArray(article.coverImage) && article.coverImage.length > 0
-      ? article.coverImage.map(
-          (img: any) => process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + img.url,
-        )
-      : article.coverImage?.url
-        ? [process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + article.coverImage.url]
-        : ["/og-image.jpg"];
+  const imageUrl = article.coverImage?.url
+    ? process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + article.coverImage.url
+    : null;
 
   // --- JSON-LD FOR NEWS ---
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     headline: article.title,
-    image: [...imageUrls],
+    image: [imageUrl],
     datePublished: article.createdAt,
     dateModified: article.updatedAt,
     author: [
@@ -130,19 +126,31 @@ export default async function SingleNews({
       </header>
 
       {/* Featured Image with Priority Loading */}
-      {imageUrls.length > 0 && (
-        <NewsGallery images={imageUrls} title={article.title} />
+      {imageUrl && (
+        <div className="relative aspect-video mb-12 rounded-[2.5rem] overflow-hidden border border-white/5 shadow-2xl bg-slate-900">
+          <Image
+            src={imageUrl}
+            alt={article.title}
+            className="object-cover"
+            fill
+            priority // Critical for LCP
+            sizes="(max-width: 896px) 100vw, 896px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
+        </div>
       )}
 
       {/* Content Container */}
-      <div className="glass rounded-[3rem] p-10 md:p-16 border border-white/5 bg-white/[0.01] backdrop-blur-md shadow-inner">
+      <div className="glass rounded-[3rem] p-5 md:p-8 border border-white/5 bg-white/[0.01] backdrop-blur-md shadow-inner">
         <div
           className="prose prose-invert prose-orange max-w-none 
           prose-p:text-slate-300 prose-p:text-xl prose-p:leading-relaxed 
           prose-headings:italic prose-headings:font-black prose-headings:uppercase
           prose-strong:text-white prose-a:text-orange-500 prose-img:rounded-3xl"
         >
-          {article.content && article.content.length > 0 ? (
+          {article.articleContent?.length > 0 ? (
+            <DynamicZoneRenderer blocks={article.articleContent} />
+          ) : article.content?.length > 0 ? (
             <BlocksRenderer content={article.content} />
           ) : (
             <div className="py-12 text-center space-y-8">
@@ -161,7 +169,8 @@ export default async function SingleNews({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 bg-white text-black hover:bg-orange-600 hover:text-white px-10 py-5 rounded-2xl font-black uppercase text-xs transition-all shadow-xl group"
                 >
-                  {isAr ? "عرض المصدر الخارجي" : "View External Source"}
+                  {isAr ? "View External Source" : "View External Source"}
+
                   <ExternalLink
                     size={16}
                     className="group-hover:translate-x-1 transition-transform"
