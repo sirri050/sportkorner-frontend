@@ -75,14 +75,14 @@ export default function Footer() {
                   {t("links.basketball")}
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/search?q=live"
                   className="text-slate-500 hover:text-white text-sm font-bold transition-colors uppercase"
                 >
                   {t("links.liveScores")}
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 

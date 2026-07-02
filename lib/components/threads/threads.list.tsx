@@ -27,7 +27,7 @@ export default async function ThreadList({
   const threads = res.data;
   const meta = res.meta.pagination;
 
-  console.log(threads, meta);
+  // console.log(threads, meta);
 
 
   return (

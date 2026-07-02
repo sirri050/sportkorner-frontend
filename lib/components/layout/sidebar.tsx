@@ -31,7 +31,7 @@ export default async function Sidebar({ locale }: { locale: string }) {
     <aside className="hidden lg:flex flex-col gap-6 w-80 shrink-0 sticky top-24 h-fit">
 
       <WriteArticleCTA />
-      <LiveScores />
+      {/* <LiveScores /> */}
 
       {/* 1. Major Sports */}
       <div className="bg-slate-900/50 border border-slate-800 rounded-3xl overflow-hidden backdrop-blur-sm shadow-xl">
