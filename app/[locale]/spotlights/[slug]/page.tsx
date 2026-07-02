@@ -155,11 +155,37 @@ export default async function SingleSpotlightPage({
                     {/* Shared Sidebar Block */}
                     <aside className="lg:w-80 shrink-0">
                         <div className="sticky top-24 space-y-8">
-                            <Sidebar locale={locale} />
+                            {(type=="legend"  || type==="rising_star") ?<TalentSideBar currentTalentId={slug} type={type as string} locale={locale} />:<Sidebar locale={locale} />}
                         </div>
                     </aside>
                 </div>
             </div>
         </main>
+    );
+}
+
+
+async function TalentSideBar({ currentTalentId, type, locale }: { currentTalentId: string, type: string, locale: string }) {
+    const res = await fetchStrapi("spotlights", {
+        locale,
+        filters: { type: type, id: { $ne: currentTalentId } },
+    });
+    console.log("talents", res.data)
+    const talents = res.data || [];
+    return (
+        <div className="bg-white rounded-lg p-4 shadow-md">
+            <h2 className="text-lg font-bold mb-2">Talent Spotlight</h2>
+            <ul className="space-y-2">
+                {talents.map((talent) => (
+                    <li key={talent.id} className="flex w-full justify-between">
+                        <a href={`/spotlights/${talent.id}`} className="text-orange-500 hover:underline">{talent.playerName}</a>
+                        <span className="text-slate-400 text-xs">{talent.type}</span>
+                    </li>
+                ))}
+            </ul>
+            <div className="mt-4">
+                <a href={`/talents`} className="text-orange-500 hover:underline">View All {type === "legend" ? "Legends" : "Rising Stars"}</a>
+            </div>
+        </div>
     );
 }
