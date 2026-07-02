@@ -27,7 +27,7 @@
     "selectLanguage": "اختر اللغة",
     "tournaments": "الدوريات",
     "news": "الأخبار",
-    "worldCup": "كأس العالم",
+    "worldCup": "كأس العالم 2026",
     "articles": "المقالات"
   },
   "Sidebar": {
@@ -212,8 +212,8 @@
     "the": "زاوية",
     "spotlight": "الأضواء",
     "titles": {
-      "football": "أبرز مباريات كرة القدم",
-      "nba": "لحظات الـ NBA"
+      "football": "جدير بالمشاهدة",
+      "nba": "لقطة اليوم"
     },
     "gis": {
       "comingSoon": "قريباً",

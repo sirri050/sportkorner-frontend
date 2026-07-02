@@ -27,7 +27,7 @@
     "selectLanguage": "Select Language",
     "tournaments": "Tournaments",
     "news": "News",
-    "worldCup": "Cup",
+    "worldCup": "World Cup 2026",
     "articles": "Articles"
   },
   "Sidebar": {
@@ -212,7 +212,7 @@
     "the": "The",
     "spotlight": "Spotlight",
     "titles": {
-      "football": "Football Highlights",
+      "football": "Featured Highlight",
       "nba": "Play of the Day"
     },
     "gis": {
