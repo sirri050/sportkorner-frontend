@@ -3,7 +3,6 @@ import { getLocale } from "next-intl/server";
 import Link from "next/link";
 import Image from "next/image";
 import { Star, History, Users } from "lucide-react";
-import { t } from "tar";
 
 export default async function TalentsPage({
     searchParams,
