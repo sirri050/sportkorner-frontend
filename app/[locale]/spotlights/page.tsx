@@ -18,7 +18,6 @@ export default async function SpotlightsArchive({
 
     const { data: spotlights, meta } = await getAllSpotlights(currentPage, 9, locale);
     const totalPages = meta.pagination.pageCount;
-
     return (
         <main className="max-w-7xl mx-auto px-4 py-16 space-y-12" dir={isAr ? "rtl" : "ltr"}>
             {/* Header */}

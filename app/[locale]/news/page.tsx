@@ -48,11 +48,9 @@ export default async function NewsPage({ searchParams }: Props) {
       pageSize: 25,
     },
   });
-
   const newsItems = response.data || [];
   const isWorldCupFilter = category === "world-cup";
   const pagination = response.meta?.pagination || { page: 1, pageSize: 25, pageCount: 1, total: newsItems?.length };
-  console.log("meta got: ", pagination);
   return (
     <main className="max-w-7xl mx-auto py-16 px-4" dir={isAr ? 'rtl' : 'ltr'}>
 

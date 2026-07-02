@@ -20,7 +20,6 @@ export default async function TalentsPage({
     if (type === "legend" || type === "rising_star") {
         filters.type = type;
     }
-    console.log("filters", filters);
     if (!filters.type) {
         filters.type = {
             $in: ["legend", "rising_star"]
@@ -34,7 +33,6 @@ export default async function TalentsPage({
     });
 
     const talents = res.data || [];
-    console.log("talents res", talents);
     return (
         <main
             className="min-h-screen pb-20"
