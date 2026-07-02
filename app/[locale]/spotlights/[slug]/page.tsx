@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Calendar, Share2, Star, History, Play, Trophy } from "lucide-react";
 import Sidebar from "@/lib/components/layout/sidebar";
+import TalentSideBar from "@/components/talents-sidebar";
 
 export default async function SingleSpotlightPage({
     params,
@@ -55,6 +56,7 @@ export default async function SingleSpotlightPage({
                                     width={220}
                                     height={220}
                                     priority
+                                    unoptimized
                                     className="w-full h-full object-cover"
                                 />
                             )}
@@ -164,28 +166,3 @@ export default async function SingleSpotlightPage({
     );
 }
 
-
-async function TalentSideBar({ currentTalentId, type, locale }: { currentTalentId: string, type: string, locale: string }) {
-    const res = await fetchStrapi("spotlights", {
-        locale,
-        filters: { type: type, id: { $ne: currentTalentId } },
-    });
-    console.log("talents", res.data)
-    const talents = res.data || [];
-    return (
-        <div className="bg-white rounded-lg p-4 shadow-md">
-            <h2 className="text-lg font-bold mb-2">Talent Spotlight</h2>
-            <ul className="space-y-2">
-                {talents.map((talent) => (
-                    <li key={talent.id} className="flex w-full justify-between">
-                        <a href={`/spotlights/${talent.id}`} className="text-orange-500 hover:underline">{talent.playerName}</a>
-                        <span className="text-slate-400 text-xs">{talent.type}</span>
-                    </li>
-                ))}
-            </ul>
-            <div className="mt-4">
-                <a href={`/talents`} className="text-orange-500 hover:underline">View All {type === "legend" ? "Legends" : "Rising Stars"}</a>
-            </div>
-        </div>
-    );
-}
