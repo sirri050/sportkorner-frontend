@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function TournamentCard({ item }: { item: any }) {
   const isLive = item.status === "live";
-
+  console.log(item)
   return (
     <div className="glass rounded-3xl p-6 border border-white/5 hover:border-orange-500/20 transition-all group relative overflow-hidden">
       {/* Status Badge */}
@@ -42,9 +42,9 @@ export default function TournamentCard({ item }: { item: any }) {
 
       {/* Action Button */}
       <Link
-        href={`/tournaments/${item.slug}`}
+        href={`/news?category=${item.category}`}
         className="block text-center w-full mt-6 py-3 rounded-xl bg-white/5 hover:bg-orange-600 hover:text-white transition-all text-[10px] font-black uppercase tracking-tighter">
-        View Tournament Hub
+        View Tournament News
       </Link>
     </div>
   );

@@ -49,6 +49,7 @@ export default async function NewsPage({ searchParams }: Props) {
     },
   });
   const newsItems = response.data || [];
+  console.log("Fetched News Items:", newsItems);
   const isWorldCupFilter = category === "world-cup";
   const pagination = response.meta?.pagination || { page: 1, pageSize: 25, pageCount: 1, total: newsItems?.length };
   return (
