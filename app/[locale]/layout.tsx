@@ -18,6 +18,7 @@ const montserrat = Montserrat({
 const cairo = Cairo({ subsets: ["arabic"], variable: "--font-cairo" });
 
 import { Metadata } from "next";
+import Script from "next/script";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -87,6 +88,22 @@ export default async function RootLayout({
       dir={direction}
       className={`${inter.variable} ${montserrat.variable} ${cairo.variable} scroll-smooth overflow-x-hidden`}
     >
+      <head>
+         <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=AW-${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}`}
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'AW-18272181037');
+          `}
+        </Script>
+      </head>
       <body
         className={`bg-slate-950 text-slate-100 overflow-x-hidden antialiased ${isRTL ? "font-cairo" : "font-inter"}`}
         suppressHydrationWarning={true}
