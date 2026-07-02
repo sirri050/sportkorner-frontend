@@ -26,7 +26,7 @@ export default async function Header() {
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
           {/* Left: Logo & Desktop Nav */}
-          <div className="flex items-center gap-4 lg:gap-8">
+          <div className="flex items-center gap-4 lg:gap-">
             <Link href="/" className="flex items-center gap-2 group shrink-0">
               <div className="bg-brand-primary p-1.5 rounded-lg group-hover:rotate-6 transition-transform shadow-lg shadow-orange-900/20">
                 <Trophy size={20} className="text-white md:size-8" />
@@ -36,9 +36,9 @@ export default async function Header() {
               </span>
             </Link>
 
-            <nav className="hidden lg:flex items-center border-s border-white/10 ps-6 gap-6">
+            <nav className="hidden lg:flex items-center border-s border-white/10 ps-5 gap-3">
               <Link
-                href="/category"
+                href="/arena"
                 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors"
               >
                 <LayoutGrid size={16} />
@@ -59,7 +59,7 @@ export default async function Header() {
                 {t("news")}
               </Link>
                <Link
-                href="/world-cup"
+                href="/news?category=world-cup"
                 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors"
               >
                 <Medal size={16} />
