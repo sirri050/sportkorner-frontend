@@ -37,13 +37,13 @@ export default async function Header() {
             </Link>
 
             <nav className="hidden lg:flex items-center border-s border-white/10 ps-5 gap-3">
-              <Link
+              {/* <Link
                 href="/arena"
                 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors"
               >
                 <LayoutGrid size={16} />
                 {t("theArena")}
-              </Link>
+              </Link> */}
               <Link
                 href="/tournaments"
                 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors"
@@ -76,7 +76,7 @@ export default async function Header() {
           {/* Right: Actions */}
           <div className="flex items-center gap-2 sm:gap-4">
             {/* Search Toggle for Mobile Only */}
-            <button className="md:hidden p-2 text-slate-400 hover:text-white transition-colors">
+            <button title="Search" className="md:hidden p-2 text-slate-400 hover:text-white transition-colors">
               <Search size={20} />
             </button>
 
