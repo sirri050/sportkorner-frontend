@@ -67,7 +67,7 @@ export default async function SingleNews({
     },
   });
 
-  console.log("response", response.data);
+  // console.log("response", response.data);
 
   const article = response.data?.[0];
   if (!article) notFound();

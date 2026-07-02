@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Calendar, Share2, Star, History, Play, Trophy } from "lucide-react";
 import Sidebar from "@/lib/components/layout/sidebar";
+import TalentSideBar from "@/components/talents-sidebar";
 
 export default async function SingleSpotlightPage({
     params,
@@ -55,6 +56,7 @@ export default async function SingleSpotlightPage({
                                     width={220}
                                     height={220}
                                     priority
+                                    unoptimized
                                     className="w-full h-full object-cover"
                                 />
                             )}
@@ -155,7 +157,7 @@ export default async function SingleSpotlightPage({
                     {/* Shared Sidebar Block */}
                     <aside className="lg:w-80 shrink-0">
                         <div className="sticky top-24 space-y-8">
-                            <Sidebar locale={locale} />
+                            {(type=="legend"  || type==="rising_star") ?<TalentSideBar currentTalentId={slug} type={type as string} locale={locale} />:<Sidebar locale={locale} />}
                         </div>
                     </aside>
                 </div>
@@ -163,3 +165,4 @@ export default async function SingleSpotlightPage({
         </main>
     );
 }
+
