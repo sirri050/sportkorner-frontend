@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronRight, Users } from "lucide-react";
 import { fetchStrapi } from "@/lib/strapi";
+import { getTranslations } from "next-intl/server";
 
 async function TalentSideBar({
     slug,
@@ -12,6 +13,8 @@ async function TalentSideBar({
     type: string;
     locale: string;
 }) {
+    const t = await getTranslations("Spotlights");
+
     const res = await fetchStrapi("spotlights", {
         locale,
         filters: {
@@ -26,7 +29,7 @@ async function TalentSideBar({
 
     const talents = res.data || [];
     const visibleTalents = talents.slice(0, 10);
-    const hasMore = talents.length > 2;
+    const hasMore = talents.length > 0;
 
     return (
         <div className="rounded-3xl border border-white/10 bg-slate-900/80 backdrop-blur-sm overflow-hidden">
@@ -39,7 +42,7 @@ async function TalentSideBar({
 
                     <div>
                         <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500 font-bold">
-                            Talent Spotlight
+                            {t("talentSpotlight")}
                         </p>
 
                         <h3 className="text-white font-black uppercase italic text-lg">
