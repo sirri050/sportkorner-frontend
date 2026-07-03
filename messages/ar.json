@@ -225,7 +225,9 @@
     "archiveLabel": "المجموعة المميزة",
     "archiveDesc": "استعرض أعظم اللحظات والشخصيات في تاريخ الرياضة.",
     "viewArchive": "عرض الأرشيف",
-    "fullArchive": "دخول الأرشيف الكامل"
+    "fullArchive": "دخول الأرشيف الكامل",
+    "risingStar":"نجم صاعد",
+    "lagend":"أسطورة"
   },
   "Articles": {
     "community": "أصوات",

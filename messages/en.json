@@ -225,7 +225,9 @@
     "archiveLabel": "Premium Collection",
     "archiveDesc": "Revisit the greatest moments and figures in sports history.",
     "viewArchive": "View Archive",
-    "fullArchive": "Enter Full Archive"
+    "fullArchive": "Enter Full Archive",
+    "lagend":"Influence / Legend",
+    "risingStar":"Rising Star"
   },
   "Articles": {
     "community": "Community",

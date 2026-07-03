@@ -1,11 +1,12 @@
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Star, History } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link"; // Import Link
 
-export default function SpotlightProfile({ data, type, locale }: { data: any, type: 'legend' | 'rising_star', locale: string }) {
+export default async function SpotlightProfile({ data, type, locale }: { data: any, type: 'legend' | 'rising_star', locale: string }) {
   if (!data) return null;
-
+  const t= await getTranslations("SpotlightGrid")
   return (
     <Link
       href={`/${locale}/spotlights/${data.slug}`}
@@ -31,7 +32,7 @@ export default function SpotlightProfile({ data, type, locale }: { data: any, ty
         </div>
         <div>
           <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${type === 'legend' ? 'bg-slate-800 text-slate-400' : 'bg-orange-500/10 text-orange-500'}`}>
-            {type === 'legend' ? 'Influence / Legend' : 'Rising Star'}
+            {type === 'legend' ? t("lagend") : t("risingStar")}
           </span>
           <h4 className="text-lg font-black italic uppercase leading-none mt-1 group-hover:text-orange-500 transition-colors">
             {data.playerName}
