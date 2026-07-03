@@ -83,7 +83,7 @@ export default async function SpotlightGrid() {
           </Link>
         </div>
       </div>
-      <div className="md:col-span-3 flex justify-center pt-4">
+      {false && <div className="md:col-span-3 flex justify-center pt-4">
         <Link
           href={`/${locale}/spotlights`}
           className="relative overflow-hidden group bg-slate-900 border border-white/5 hover:border-orange-500/50 px-10 py-4 rounded-2xl transition-all shadow-2xl"
@@ -98,7 +98,7 @@ export default async function SpotlightGrid() {
             <ChevronRight size={18} className="text-orange-600 group-hover:translate-x-1 transition-transform" />
           </div>
         </Link>
-      </div>
+      </div>}
     </section>
   );
 }
