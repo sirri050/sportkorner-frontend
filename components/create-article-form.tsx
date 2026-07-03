@@ -13,6 +13,7 @@ const initialState: CreateArticleState = {
 export default function CreateArticleForm({
   action,
   translations,
+  locale
 }: {
   action: (
     state: CreateArticleState,
@@ -26,7 +27,8 @@ export default function CreateArticleForm({
     coverImage: string;
     uploadHint: string;
     content: string;
-  };
+  },
+  locale:string
 }) {
   const [state, formAction, pending] = useActionState(action, initialState);
 
@@ -34,11 +36,16 @@ export default function CreateArticleForm({
     <form action={formAction}>
       {state.message && (
         <div
-          className={`mb-6 rounded-xl p-4 ${
+          className={`mb-6 rounded-xl p-4 flex w-full justify-between ${
             state.success ? "bg-green-600" : "bg-red-600"
           } text-white`}
         >
           {state.message}
+          {state.success && (
+            <a href={`/${locale}/articles`} className="ml-2 text-white hover:underline hover:text-grey-400">
+              View articles
+            </a>
+          )}
         </div>
       )}
 

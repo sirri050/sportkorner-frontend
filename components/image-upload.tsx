@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect, useRef } from "react";
 import { Upload, X } from "lucide-react";
 import Image from "next/image";
 
@@ -14,9 +14,15 @@ export default function ImageUpload({state,translations}:{ state:{success:boolea
         content: string;
     };}) {
   const [preview, setPreview] = useState<string | null>(null);
-  if(!state.success){
-    setPreview(null)
+useEffect(() => {
+  if (!state.success && state.message) {
+    setPreview(null);
+
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
   }
+}, [state.success, state.message]);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
 
@@ -28,11 +34,12 @@ export default function ImageUpload({state,translations}:{ state:{success:boolea
     const url = URL.createObjectURL(file);
     setPreview(url);
   };
-
+  const inputRef = useRef<HTMLInputElement>(null);
   return (
     <div className="space-y-2">
       <div className="border-2 border-dashed border-white/10 rounded-2xl overflow-hidden">
         <input
+        ref={inputRef}
           id="img-upload"
           type="file"
           name="image"
