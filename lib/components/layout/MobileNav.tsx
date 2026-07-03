@@ -55,7 +55,7 @@ export default function MobileNav({ user }: { user: any }) {
 
         <div className="flex flex-col h-[calc(100vh-80px)]">
           {/* Main Links */}
-          <nav className="flex flex-col p-4 gap-2">
+          <nav className="flex flex-col p-4 gap-1">
             <Link
               href="/category"
               onClick={() => setOpen(false)}
@@ -107,14 +107,6 @@ export default function MobileNav({ user }: { user: any }) {
           </nav>
 
           <div className="mt-auto p-6 border-t border-white/5 space-y-6">
-            {/* Mobile Language Switcher */}
-            <div className="space-y-3">
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 px-1">
-                Select Language
-              </p>
-              <LanguageSwitcher />
-            </div>
-
             {/* User Account Section */}
             {user ? (
               <div className="space-y-2">

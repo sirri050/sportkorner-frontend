@@ -31,11 +31,14 @@ export default async function Header() {
               <div className="bg-brand-primary p-1.5 rounded-lg group-hover:rotate-6 transition-transform shadow-lg shadow-orange-900/20">
                 <Trophy size={20} className="text-white md:size-8" />
               </div>
-              <span className="text-lg md:text-xl font-black tracking-tighter uppercase font-heading">
+              <span className="text-md md:text-xl font-black tracking-tighter uppercase font-heading">
                 Sport<span className="text-brand-primary">Korner</span>
               </span>
             </Link>
-
+            {/* Mobile Language Switcher */}
+            <div className="sm:hidden space-y-3">
+              <LanguageSwitcher />
+            </div>
             <nav className="hidden lg:flex items-center border-s border-white/10 ps-5 gap-3">
               {/* <Link
                 href="/arena"
