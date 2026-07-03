@@ -56,14 +56,14 @@ export default function MobileNav({ user }: { user: any }) {
         <div className="flex flex-col h-[calc(100vh-80px)]">
           {/* Main Links */}
           <nav className="flex flex-col p-4 gap-2">
-            <Link
+            {/* <Link
               href="/category"
               onClick={() => setOpen(false)}
               className="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 text-lg font-black uppercase italic transition-all"
             >
               <LayoutGrid className="text-brand-primary" size={22} />
               {t("theArena")}
-            </Link>
+            </Link> */}
               <Link
                 href="/tournaments"
                  className="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 text-lg font-black uppercase italic transition-all"
@@ -87,7 +87,7 @@ export default function MobileNav({ user }: { user: any }) {
               </Link>
 
                <Link
-                href="/world-cup"
+                href="/news?category=world-cup"
                  className="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 text-lg font-black uppercase italic transition-all"
               >
                 <Medal size={16} />
