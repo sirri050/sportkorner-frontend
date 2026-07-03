@@ -1,8 +1,6 @@
 import { createCommunityArticle } from "@/lib/actions/articles";
 import { getLocale, getTranslations } from "next-intl/server";
-import { Upload, Send } from "lucide-react";
-import ImageUpload from "./image-upload";
-import CreateArticleForm from "./create-article-form";
+import CreateArticleForm from "../../../../components/create-article-form";
 
 export default async function CreateArticlePage() {
   const t = await getTranslations("Articles");
@@ -24,7 +22,7 @@ export default async function CreateArticlePage() {
       className="max-w-3xl mx-auto py-12 px-4"
       dir={locale === "ar" ? "rtl" : "ltr"}
     >
-      <CreateArticleForm action={createWithLocale} translations={translations} />
+      <CreateArticleForm action={createWithLocale} translations={translations} locale={locale} />
     </main>
   );
 }

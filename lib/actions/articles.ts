@@ -13,7 +13,6 @@ export async function createCommunityArticle(
   prevState: CreateArticleState,
   formData: FormData,
 ): Promise<CreateArticleState> {
-  let shouldRedirect = false;
   try {
     // Get auth token
     const cookieStore = await cookies();
@@ -63,16 +62,43 @@ export async function createCommunityArticle(
       );
 
       if (!uploadRes.ok) {
-        const err = await uploadRes.json();
-        console.log("image upload failed", err);
+        switch (uploadRes.status) {
+          case 413:
+            return {
+              success: false,
+              message: "The selected image is too large. Please upload a smaller image.",
+            };
+
+          case 401:
+            return {
+              success: false,
+              message: "Your session has expired.",
+            };
+
+          case 403:
+            return {
+              success: false,
+              message: "You don't have permission to upload images.",
+            };
+        }
+
+        const contentType = uploadRes.headers.get("content-type");
+
+        if (contentType?.includes("application/json")) {
+          const err = await uploadRes.json();
+
+          return {
+            success: false,
+            message: err?.error?.message ?? "Upload failed.",
+          };
+        }
+
         return {
           success: false,
-          message: err?.error?.message ?? "Failed to upload image.",
+          message: "Upload failed.",
         };
       }
-
       const uploadData = await uploadRes.json();
-      console.log("image res", uploadData)
       imageId = uploadData[0].id;
     }
 
