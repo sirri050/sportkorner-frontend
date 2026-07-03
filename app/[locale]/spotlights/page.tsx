@@ -40,7 +40,7 @@ export default async function SpotlightsArchive({
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {spotlights.map((item: any, index: number) => {
                     // Logic to decide which component to use based on Strapi "type" field
-                    const isVideoType = ["european_highlight", "nba_moment"].includes(item.type);
+                    const isVideoType = ["european_highlight", "nba_moment", "Play_of_the_day", "Featured_Highlight"].includes(item.type);
 
                     return (
                         <div
@@ -50,7 +50,7 @@ export default async function SpotlightsArchive({
                             {isVideoType ? (
                                 <SpotlightVideo
                                     data={item}
-                                    title={item.type === 'nba_moment' ? t('titles.nba') : t('titles.football')}
+                                    title={(item.type === 'nba_moment' || item.type==="Play_of_the_day") ? t('titles.nba') : t('titles.football')}
                                     locale={locale}
                                 />
                             ) : (
