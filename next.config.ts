@@ -5,7 +5,11 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   serverExternalPackages: ['@swc/helpers'],
-  
+   experimental: {
+    serverActions: {
+      bodySizeLimit: '5mb',
+    },
+  },
   images: {
     dangerouslyAllowLocalIP: true,
     formats: ["image/avif", "image/webp"],
