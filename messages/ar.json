@@ -326,5 +326,15 @@
     "shareArticle": "شارك هذا المقال",
     "featured": "الفنان المميز:",
     "talentSpotlight":"موهبة مميزة"
+  },
+  "Talents":{
+    "talentDirectory":"دليل المواهب ",
+    "sport":"المواهب",
+    "talent":"الرياضية",
+    "talentDescription":"اكتشف رياضيين أسطوريين والجيل القادم من النجوم الصاعدة التي ترسم ملامح مستقبل الرياضة.",
+    "viewProfile":"عرض الملف الشخصي",
+    "legend":"أسطورة",
+    "risingStar":"نجم صاعد",
+    "all":"الكل"
   }
 }

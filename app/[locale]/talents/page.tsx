@@ -1,5 +1,5 @@
 import { fetchStrapi } from "@/lib/strapi";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
 import Image from "next/image";
 import { Star, History, Users } from "lucide-react";
@@ -11,7 +11,7 @@ export default async function TalentsPage({
 }) {
     const locale = await getLocale();
     const isAr = locale === "ar";
-
+    const t = await getTranslations("Talents");
     const params = await searchParams;
     const type = params.type;
 
@@ -45,16 +45,15 @@ export default async function TalentsPage({
                 <div className="relative max-w-7xl mx-auto px-4 md:px-16">
                     <div className="inline-flex items-center gap-2 rounded-full bg-orange-500/10 px-4 py-2 text-orange-500 text-xs uppercase tracking-[0.3em] font-black">
                         <Users size={14} />
-                        Talent Directory
+                        {t("talentDirectory")}
                     </div>
 
                     <h1 className="mt-6 text-5xl md:text-7xl font-black italic uppercase tracking-tight text-white">
-                        Sports <span className="text-orange-500">Talents</span>
+                         {t("sport")}<span className="text-orange-500"> {t("talent")}</span>
                     </h1>
 
                     <p className="mt-5 max-w-2xl text-slate-400 text-lg">
-                        Explore legendary athletes and the next generation of rising stars
-                        shaping the future of sport.
+                       {t("talentDescription")}
                     </p>
 
                     {/* FILTERS */}
@@ -64,21 +63,21 @@ export default async function TalentsPage({
                             href={`/${locale}/talents`}
                             active={!type}
                         >
-                            All
+                            {t("all")}
                         </FilterButton>
 
                         <FilterButton
                             href={`/${locale}/talents?type=legend`}
                             active={type === "legend"}
                         >
-                            Legends
+                            {t("legend")}
                         </FilterButton>
 
                         <FilterButton
                             href={`/${locale}/talents?type=rising_star`}
                             active={type === "rising_star"}
                         >
-                            Rising Stars
+                            {t("risingStar")}
                         </FilterButton>
                     </div>
                 </div>
@@ -129,12 +128,12 @@ export default async function TalentsPage({
                                         {talent.type === "legend" ? (
                                             <span className="inline-flex items-center gap-2 rounded-full bg-slate-900/90 px-3 py-1 text-xs font-bold uppercase text-white">
                                                 <History size={12} />
-                                                Legend
+                                                {t("legend")}
                                             </span>
                                         ) : (
                                             <span className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-3 py-1 text-xs font-bold uppercase text-white">
                                                 <Star size={12} />
-                                                Rising Star
+                                                {t("risingStar")}
                                             </span>
                                         )}
                                     </div>
@@ -158,7 +157,7 @@ export default async function TalentsPage({
                                         </span>
 
                                         <span className="font-bold text-orange-500 group-hover:translate-x-1 transition">
-                                            View Profile →
+                                            {t("viewProfile")} →
                                         </span>
                                     </div>
                                 </div>

@@ -326,5 +326,15 @@
     "shareArticle": "Share this article",
     "featured": "Featured Artist:",
     "talentSpotlight":"Talent Spotlight"
+  },
+    "Talents":{
+    "talentDirectory":"Talent Directory",
+    "sport":"Sports",
+    "talent":"Talents",
+    "talentDescription":"Explore legendary athletes and the next generation of rising stars shaping the future of sport.",
+    "viewProfile":"View Profile",
+    "legend":"LEGEND",
+    "risingStar":"RIGING STAR ",
+    "all":"ALL"
   }
 }
