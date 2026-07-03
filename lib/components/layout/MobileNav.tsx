@@ -55,7 +55,7 @@ export default function MobileNav({ user }: { user: any }) {
 
         <div className="flex flex-col h-[calc(100vh-80px)]">
           {/* Main Links */}
-          <nav className="flex flex-col p-4 gap-1">
+          <nav className="flex flex-col p-4 gap-2">
             <Link
               href="/category"
               onClick={() => setOpen(false)}

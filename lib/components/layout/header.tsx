@@ -31,14 +31,10 @@ export default async function Header() {
               <div className="bg-brand-primary p-1.5 rounded-lg group-hover:rotate-6 transition-transform shadow-lg shadow-orange-900/20">
                 <Trophy size={20} className="text-white md:size-8" />
               </div>
-              <span className="text-md md:text-xl font-black tracking-tighter uppercase font-heading">
+              <span className="hidden sm:block text-md md:text-xl font-black tracking-tighter uppercase font-heading">
                 Sport<span className="text-brand-primary">Korner</span>
               </span>
             </Link>
-            {/* Mobile Language Switcher */}
-            <div className="sm:hidden space-y-3">
-              <LanguageSwitcher />
-            </div>
             <nav className="hidden lg:flex items-center border-s border-white/10 ps-5 gap-3">
               {/* <Link
                 href="/arena"
@@ -54,14 +50,14 @@ export default async function Header() {
                 <Trophy size={16} />
                 {t("tournaments")}
               </Link>
-               <Link
+              <Link
                 href="/news"
                 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors"
               >
                 <Rss size={16} />
                 {t("news")}
               </Link>
-               <Link
+              <Link
                 href="/news?category=world-cup"
                 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors"
               >
@@ -86,7 +82,10 @@ export default async function Header() {
             <div className="hidden sm:block">
               <LanguageSwitcher />
             </div>
-
+            {/* Mobile Language Switcher */}
+            <div className="sm:hidden ml-auto space-y-3">
+              <LanguageSwitcher />
+            </div>
             {user ? (
               <div className="flex items-center gap-2 sm:gap-4">
                 <Link
@@ -126,7 +125,7 @@ export default async function Header() {
 
                 <Link
                   href="/register"
-                  className="bg-brand-primary text-white px-4 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-lg shadow-orange-950/20"
+                  className="bg-brand-primary text-white px-2 py-1 rounded-xl text-[10px] font-black uppercase hover:scale-105 active:scale-95 transition-all shadow-lg shadow-orange-950/20"
                 >
                   {t("joinNow")}
                 </Link>
