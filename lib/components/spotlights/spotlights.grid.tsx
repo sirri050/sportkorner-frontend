@@ -10,13 +10,16 @@ export default async function SpotlightGrid() {
   const locale = await getLocale();
 
   // Passing locale to the fetcher ensures we get the right language from Strapi
-  const [highlight, nba, legend, rising] = await Promise.all([
+  const [featured, playOfTheDay, highlight, nba, legend, rising] = await Promise.all([
+    getSpotlightByType('Featured_highlight', 1, locale),
+    getSpotlightByType('Play_of_the_day', 1, locale),
     getSpotlightByType('european_highlight', 1, locale),
     getSpotlightByType('nba_moment', 1, locale),
     getSpotlightByType('legend', 1, locale),
     getSpotlightByType('rising_star', 1, locale)
   ]);
-
+  const featuredHighlight = [...featured,...highlight];
+  // const playOfTheDayHighlight= [...playOfTheDay, ...highlight];
   return (
     <section className="mb-12" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       {/* Section Header */}
@@ -33,7 +36,7 @@ export default async function SpotlightGrid() {
 
         {/* Left Column: Football Highlight */}
         <div className="md:col-span-2">
-          <SpotlightVideo data={highlight[0]} title={t('titles.football')} locale={locale} />
+          <SpotlightVideo data={featuredHighlight[0]} title={t('titles.football')} locale={locale} />
         </div>
 
         {/* Right Column: Legend and NBA */}
