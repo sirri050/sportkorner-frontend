@@ -19,6 +19,7 @@ const cairo = Cairo({ subsets: ["arabic"], variable: "--font-cairo" });
 
 import { Metadata } from "next";
 import Script from "next/script";
+import ServiceWorker from "@/components/ServiceWorker";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -64,6 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       icon: "/favicon.ico",
       apple: "/apple-touch-icon.png",
     },
+    manifest:"/manifest.json"
   };
 }
 
@@ -111,6 +113,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <div className="flex flex-col min-h-screen">
             <ConstructionBanner />
+            <ServiceWorker />
             <Header />           
     
   
