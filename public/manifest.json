@@ -1,6 +1,6 @@
 {
   "name": "SportKorner",
-  "short_name": "SportKorner",
+  "short_name": "SK",
   "description": "The Future of Sports Media",
   "start_url": "/",
   "display": "standalone",
