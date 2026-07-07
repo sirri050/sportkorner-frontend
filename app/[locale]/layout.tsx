@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       default: isAr ? "سبورت كورنر | منصة التحليل الرياضي" : "SportKorner | Premium Sports Analysis",
       template: `%s | SportKorner`
     },
-    description: isAr 
-      ? "المنصة الأولى لتغطية كأس العالم 2026، أخبار الرياضة العربية وتحليلات البيانات الجغرافية للملاعب." 
+    description: isAr
+      ? "المنصة الأولى لتغطية كأس العالم 2026، أخبار الرياضة العربية وتحليلات البيانات الجغرافية للملاعب."
       : "The premier platform for World Cup 2026 coverage, Arabic sports news, and GIS stadium analytics.",
     keywords: ["Sports", "Arabic", "World Cup 2026", "Football Analysis", "كرة القدم", "الكرة العربية", "كأس العالم"],
     authors: [{ name: "Tariq Bacheer" }],
@@ -61,11 +61,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: "SportKorner",
       creator: "@sportkorner",
     },
+    manifest: "/manifest.json",
     icons: {
       icon: "/favicon.ico",
       apple: "/apple-touch-icon.png",
     },
-    manifest:"/manifest.json"
+    appleWebApp: {
+      capable: true,
+      title: "SportKorner",
+      statusBarStyle: "black-translucent",
+    },
   };
 }
 
@@ -91,7 +96,7 @@ export default async function RootLayout({
       className={`${inter.variable} ${montserrat.variable} ${cairo.variable} scroll-smooth overflow-x-hidden`}
     >
       <head>
-         <Script
+        <Script
           src={`https://www.googletagmanager.com/gtag/js?id=AW-${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}`}
           strategy="afterInteractive"
         />
@@ -114,9 +119,9 @@ export default async function RootLayout({
           <div className="flex flex-col min-h-screen">
             <ConstructionBanner />
             <ServiceWorker />
-            <Header />           
-    
-  
+            <Header />
+
+
             <main className="flex-1">
               <div className=" max-w-7xl mx-auto ">
                 <NewsTicker />
