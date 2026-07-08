@@ -11,7 +11,7 @@ import { Metadata } from "next";
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const locale = await getLocale();
-  
+
   // SYNCED: Changed from "news" to "articles" to match your page logic
   const response = await fetchStrapi("articles", {
     filters: { slug },
@@ -22,27 +22,50 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const article = response.data?.[0];
   if (!article) return { title: "Article Not Found" };
 
-  const imageUrl = article.coverImage?.url 
-    ? (process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + article.coverImage.url) 
+  const imageUrl = article.coverImage?.url
+    ? (process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + article.coverImage.url)
     : "/og-image.jpg";
-
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/articles/${article.slug}`;
   return {
     title: article.title,
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
     description: article.excerpt || article.title,
     openGraph: {
-      title: article.title,
-      description: article.excerpt,
       type: "article",
+      url,
+      siteName: "SportKorner",
+      locale,
+
+      title: article.title,
+      description: article.excerpt || article.title,
+
       publishedTime: article.createdAt,
-      authors: [article.author?.username || "SportKorner"],
-      images: [{ url: imageUrl, width: 1200, height: 630 }],
+      modifiedTime: article.updatedAt,
+
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
-      description: article.excerpt,
+      description: article.excerpt || article.title,
       images: [imageUrl],
     },
+    robots: {
+      index: true,
+      follow: true,
+    }, keywords: [
+      "Football",
+      "World Cup",
+      "SportKorner",
+      article.title,
+    ],
   };
 }
 
@@ -69,8 +92,8 @@ export default async function SingleArticlePage({ params }: { params: Promise<{ 
     "image": process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + article.coverImage?.url,
     "datePublished": article.createdAt,
     "author": [{
-        "@type": "Person",
-        "name": article.author?.username || "Community Member",
+      "@type": "Person",
+      "name": article.author?.username || "Community Member",
     }],
   };
 
@@ -83,7 +106,7 @@ export default async function SingleArticlePage({ params }: { params: Promise<{ 
       />
 
       {/* Back Button */}
-      <Link 
+      <Link
         href={`/${locale}/articles`}
         className="inline-flex items-center gap-2 text-slate-500 hover:text-orange-500 mb-8 text-xs font-black uppercase transition-colors"
       >
@@ -113,8 +136,8 @@ export default async function SingleArticlePage({ params }: { params: Promise<{ 
 
       <div className="relative aspect-video rounded-[2.5rem] overflow-hidden mb-12 border border-white/5 bg-slate-900 shadow-2xl">
         {article.coverImage?.url ? (
-          <Image 
-            src={process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + article.coverImage.url} 
+          <Image
+            src={process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + article.coverImage.url}
             alt={article.title}
             className="object-cover"
             fill

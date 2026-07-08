@@ -28,22 +28,47 @@ export async function generateMetadata({
   const imageUrl = article.coverImage?.url
     ? process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + article.coverImage.url
     : "/og-image.jpg";
-
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/news/${article.slug}`;
   return {
     title: article.title,
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
     description: article.excerpt || article.title,
     openGraph: {
-      title: article.title,
-      description: article.excerpt,
       type: "article",
+      url,
+      siteName: "SportKorner",
+      locale,
+
+      title: article.title,
+      description: article.excerpt || article.title,
+
       publishedTime: article.createdAt,
-      images: [{ url: imageUrl, width: 1200, height: 630 }],
+      modifiedTime: article.updatedAt,
+
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
+      description: article.excerpt || article.title,
       images: [imageUrl],
     },
+    robots: {
+      index: true,
+      follow: true,
+    }, keywords: [
+      "Football",
+      "World Cup",
+      "SportKorner",
+      article.title,
+    ],
   };
 }
 

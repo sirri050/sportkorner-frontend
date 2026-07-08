@@ -6,6 +6,104 @@ import Image from "next/image";
 import { Calendar, Share2, Star, History, Play, Trophy } from "lucide-react";
 import Sidebar from "@/lib/components/layout/sidebar";
 import TalentSideBar from "@/components/talents-sidebar";
+import { Metadata } from "next";
+// --- DYNAMIC SEO ---
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+    const { slug } = await params;
+    const locale = await getLocale();
+
+    const res = await fetchStrapi("spotlights", {
+        locale,
+        filters: { slug: { $eq: slug } },
+        populate: ["coverImage"],
+    });
+
+    const article = res.data?.[0];
+
+    if (!article) {
+        return {
+            title: "Spotlight Not Found | SportKorner",
+        };
+    }
+
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL!;
+    const mediaUrl = process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL!;
+
+    const url = `${siteUrl}/${locale}/spotlights/${article.slug}`;
+
+    const imageUrl = article.coverImage?.url
+        ? `${mediaUrl}${article.coverImage.url}`
+        : `${siteUrl}/icons/icon-512.png`;
+
+    const description =
+        article.playerName
+            ? `${article.title}. Discover more about ${article.playerName} on SportKorner.`
+            : article.title;
+
+    return {
+        metadataBase: new URL(siteUrl),
+
+        title: `${article.title} | SportKorner`,
+        description,
+
+        alternates: {
+            canonical: url,
+        },
+
+        openGraph: {
+            type: "article",
+            url,
+            siteName: "SportKorner",
+            locale,
+
+            title: article.title,
+            description,
+
+            publishedTime: article.publishedAt ?? article.createdAt,
+            modifiedTime: article.updatedAt,
+
+            images: [
+                {
+                    url: imageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: article.title,
+                },
+            ],
+        },
+
+        twitter: {
+            card: "summary_large_image",
+            title: article.title,
+            description,
+            images: [
+                {
+                    url: imageUrl,
+                    alt: article.title,
+                },
+            ],
+        },
+
+        robots: {
+            index: true,
+            follow: true,
+        },
+
+        keywords: [
+            "SportKorner",
+            "Football",
+            "World Cup",
+            "Spotlight",
+            article.playerName,
+            article.type,
+            article.title,
+        ].filter(Boolean) as string[],
+    };
+}
 
 export default async function SingleSpotlightPage({
     params,
@@ -157,7 +255,7 @@ export default async function SingleSpotlightPage({
                     {/* Shared Sidebar Block */}
                     <aside className="lg:w-80 shrink-0">
                         <div className="sticky top-24 space-y-8">
-                            {(type=="legend"  || type==="rising_star") ?<TalentSideBar slug={slug} type={type as string} locale={locale} />:<Sidebar locale={locale} />}
+                            {(type == "legend" || type === "rising_star") ? <TalentSideBar slug={slug} type={type as string} locale={locale} /> : <Sidebar locale={locale} />}
                         </div>
                     </aside>
                 </div>

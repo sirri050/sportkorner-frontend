@@ -8,7 +8,11 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 // --- DYNAMIC SEO ---
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
   const locale = await getLocale();
 
@@ -19,17 +23,79 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   });
 
   const thread = res.data?.[0];
-  if (!thread) return { title: "Discussion Not Found" };
+
+  if (!thread) {
+    return {
+      title: "Discussion Not Found | SportKorner",
+    };
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL!;
+  const url = `${siteUrl}/${locale}/thread/${thread.slug}`;
+  const imageUrl = `${siteUrl}/icons/icon-512.png`;
+
+  const description = `Join the discussion about ${
+    thread.categories?.[0]?.name || "sports"
+  } on SportKorner. Share your insights and read community opinions.`;
 
   return {
-    title: `${thread.title} | SportKorner`,
-    description: `Join the discussion about ${thread.categories?.[0]?.name || 'sports'} on SportKorner. Share your insights and read community opinions.`,
+    metadataBase: new URL(siteUrl),
+
+    title: `${thread.title}`,
+    description,
+
     alternates: {
-      canonical: `/${locale}/thread/${slug}`,
-    }
+      canonical: url,
+    },
+
+    openGraph: {
+      type: "article",
+      url,
+      siteName: "SportKorner",
+      locale,
+
+      title: thread.title,
+      description,
+
+      publishedTime: thread.createdAt,
+      modifiedTime: thread.updatedAt,
+
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: thread.title,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: thread.title,
+      description,
+      images: [
+        {
+          url: imageUrl,
+          alt: thread.title,
+        },
+      ],
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
+
+    keywords: [
+      "SportKorner",
+      "Football",
+      "Sports Discussion",
+      thread.categories?.[0]?.name,
+      thread.title,
+    ].filter(Boolean) as string[],
   };
 }
-
 export default async function ThreadPage({
   params,
 }: {

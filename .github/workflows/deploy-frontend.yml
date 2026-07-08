@@ -35,7 +35,7 @@ jobs:
           STRAPI_API_TOKEN: ${{ secrets.STRAPI_API_TOKEN }}
           RADIO_API_KEY: ${{ secrets.RADIO_API_KEY }}
           NEXT_PUBLIC_GOOGLE_ADS_ID: ${{secrets.NEXT_PUBLIC_GOOGLE_ADS_ID}}
-
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
 
       - name: Remove old .next
         uses: appleboy/ssh-action@v1.0.3
