@@ -85,7 +85,7 @@ export default async function SearchPage({
                   <span className="text-3xl md:text-5xl text-orange-500">"{query}"</span>
                 </>
               ) : (
-                t("title")
+               <span className="text-3xl md:text-5xl">Search the Arena</span>
               )}
             </h1>
 
