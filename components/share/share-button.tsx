@@ -11,7 +11,7 @@ export type ShareData = {
   url: string;
 };
 
-export default function ShareButton({ data }: { data: ShareData }) {
+export default function ShareButton({ data, label }: { data: ShareData, label?:string }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -21,7 +21,7 @@ export default function ShareButton({ data }: { data: ShareData }) {
         className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-500 hover:text-orange-500 transition-colors"
       >
         <Share2 size={16} />
-        Share
+        {label || "Share"}
       </button>
 
       <ShareModal

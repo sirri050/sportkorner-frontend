@@ -244,7 +244,11 @@ export default async function SingleSpotlightPage({
                                 <p className="italic text-slate-500">Description content details unavailable.</p>
                             )}
                         </div>
+                       
+                        {/* Interactive Share Row */}
+                        <div className="mt-16 pt-8 border-t border-white/5 flex items-center justify-between">
                         <ShareButton
+                            label={t("shareArticle") || "Share Selection"}
                             data={{
                                 title: article.title,
                                 description: article.excerpt,
@@ -252,11 +256,6 @@ export default async function SingleSpotlightPage({
                                 url: process.env.NEXT_PUBLIC_SITE_URL + `/${locale}/spotlights/${article.slug}`,
                             }}
                         />
-                        {/* Interactive Share Row */}
-                        <div className="mt-16 pt-8 border-t border-white/5 flex items-center justify-between">
-                            <button className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-500 hover:text-orange-500 transition-colors">
-                                <Share2 size={16} /> {t("shareArticle") || "Share Selection"}
-                            </button>
                         </div>
                     </div>
 

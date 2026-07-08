@@ -6,9 +6,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 export default function Pagination({
   currentPage,
   totalPages,
+  keepParams,
 }: {
   currentPage: number;
   totalPages: number;
+  keepParams?: Record<string, string | undefined>;
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -17,6 +19,14 @@ export default function Pagination({
     const params = new URLSearchParams(searchParams);
 
     params.set("page", String(page));
+
+    Object.entries(keepParams || {}).forEach(([key, value]) => {
+      if (value) {
+        params.set(key, value);
+      } else {
+        params.delete(key);
+      }
+    });
 
     router.push(`?${params.toString()}`);
   }

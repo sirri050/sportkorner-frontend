@@ -222,7 +222,7 @@ export default function ShareModal({
 
                     {/* Social */}
 
-                    <div className="mt-6">
+                    <div className="my-2">
 
                         <p className="mb-3 text-xs font-black uppercase tracking-widest text-slate-500">
                             Share via

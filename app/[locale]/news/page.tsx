@@ -4,10 +4,11 @@ import { Clock, ArrowRight, Zap, Trophy, X } from "lucide-react"; // Added Troph
 import { getLocale, getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import Pagination from "@/components/news-pagination";
+import NewsSearch from "@/components/news-searchbar";
 
 // Define the Props type for Next.js 15+ searchParams
 type Props = {
-  searchParams: Promise<{ category?: string , page?: string }>;
+  searchParams: Promise<{ category?: string; page?: string; q?: string }>;
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -23,10 +24,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NewsPage({ searchParams }: Props) {
-  const { category, page } = await searchParams; // Get category from URL (?category=world-cup)
+  const { category, page, q } = await searchParams; // Get category and search query from URL
   const locale = await getLocale();
   const t = await getTranslations("News");
   const isAr = locale === "ar";
+  const query = q?.trim() || "";
+  const currentPage = page ? Math.max(1, Math.min(4, parseInt(page) || 1)) : 1;
 
   // 1. Build the filter logic
   const filters: any = {};
@@ -36,6 +39,20 @@ export default async function NewsPage({ searchParams }: Props) {
     };
   }
 
+  if (query) {
+    filters.$or = [
+      {
+        title: {
+          $containsi: query,
+        },
+      },
+      {
+        slug: {
+          $containsi: query,
+        },
+      },
+    ];
+  }
 
 
   const response = await fetchStrapi("news", {
@@ -44,24 +61,25 @@ export default async function NewsPage({ searchParams }: Props) {
     locale,
     populate: ["categories"],
     pagination: {
-      page: page ? (parseInt(page) > 4 ? 4 : parseInt(page)) : 1,
+      page: currentPage,
       pageSize: 25,
     },
   });
   const newsItems = response.data || [];
+  console.log("news got: ", newsItems?.map((elem: any) => elem.title));
   const isWorldCupFilter = category === "world-cup";
   const pagination = response.meta?.pagination || { page: 1, pageSize: 25, pageCount: 1, total: newsItems?.length };
   return (
     <main className="max-w-7xl mx-auto py-16 px-4" dir={isAr ? 'rtl' : 'ltr'}>
 
       {/* Dynamic Header: Changes if World Cup category is active */}
-      <header className={`mb-16 p-8 rounded-[3rem] border-s-8 transition-all
+      <header className={`w-full mb-16 p-8 rounded-[3rem] border-s-8 transition-all
         ${isWorldCupFilter
           ? "border-orange-600 bg-orange-600/[0.03] shadow-2xl shadow-orange-950/20"
           : "border-orange-600"
         }`}
       >
-        <div className="flex justify-between items-start">
+        <div className="flex flex-wrap gap-2 w-full items-center justify-between">
           <div className="space-y-4">
             {isWorldCupFilter && (
               <div className="flex items-center gap-2 text-orange-500 font-black uppercase text-xs tracking-widest mb-2">
@@ -79,9 +97,10 @@ export default async function NewsPage({ searchParams }: Props) {
                 : t("description")}
             </p>
           </div>
-
+          <div className="flex w-full items-end">
+            <NewsSearch currentQuery={query} currentCategory={category} />
           {/* Close Filter Button */}
-          {category && (
+          {(category || query) && (
             <Link
               href={`/${locale}/news`}
               className="p-3 bg-white/5 hover:bg-white/10 rounded-full text-slate-500 hover:text-white transition-colors"
@@ -90,6 +109,7 @@ export default async function NewsPage({ searchParams }: Props) {
               <X size={20} />
             </Link>
           )}
+          </div>
         </div>
       </header>
 
@@ -158,6 +178,7 @@ export default async function NewsPage({ searchParams }: Props) {
     <Pagination
       currentPage={pagination.page}
       totalPages={pagination.pageCount}
+      keepParams={{ category, q: query }}
     />
   </div>
 )}
@@ -166,7 +187,11 @@ export default async function NewsPage({ searchParams }: Props) {
       {newsItems.length === 0 && (
         <div className="text-center py-20 glass rounded-[3rem] border border-dashed border-white/10">
           <p className="text-slate-500 font-black uppercase italic tracking-widest">
-            {category ? `No news found for ${category}` : t("noNews")}
+            {query
+              ? (isAr ? `لا توجد نتائج لـ "${query}"` : `No news found for "${query}"`)
+              : category
+                ? `No news found for ${category}`
+                : t("noNews")}
           </p>
         </div>
       )}

@@ -244,7 +244,7 @@ export default async function ThreadPage({
             title: thread.title,
             description: thread.excerpt,
             image: process.env.NEXT_PUBLIC_SITE_URL + "/icons/icon-512.png",
-            url: process.env.NEXT_PUBLIC_SITE_URL + `/${locale}/threads/${thread.slug}`,
+            url: process.env.NEXT_PUBLIC_SITE_URL + `/${locale}/thread/${thread.slug}`,
           }}
         />
         </div>

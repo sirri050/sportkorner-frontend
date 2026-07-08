@@ -207,15 +207,16 @@ export default async function SingleNews({
           )}
         </div>
       </div>
-
-<ShareButton
-  data={{
-    title: article.title,
-    description: article.excerpt,
-    image: imageUrl,
-    url: process.env.NEXT_PUBLIC_SITE_URL + `/${locale}/news/${article.slug}`,
-  }}
-/>
+      <br/>
+      <br/>
+      <ShareButton
+        data={{
+          title: article.title,
+          description: article.excerpt,
+          image: imageUrl,
+          url: process.env.NEXT_PUBLIC_SITE_URL + `/${locale}/news/${article.slug}`,
+        }}
+      />
 
       {/* Social Footer (Optional) */}
       <footer className="mt-12 flex justify-center border-t border-white/5 pt-8">
