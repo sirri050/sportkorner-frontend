@@ -6,6 +6,7 @@ import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import { Metadata } from "next";
 import DynamicZoneRenderer from "@/components/dynamic-zone-render";
+import ShareButton from "@/components/share/share-button";
 
 // --- DYNAMIC SEO ---
 export async function generateMetadata({
@@ -206,6 +207,15 @@ export default async function SingleNews({
           )}
         </div>
       </div>
+
+<ShareButton
+  data={{
+    title: article.title,
+    description: article.excerpt,
+    image: imageUrl,
+    url: process.env.NEXT_PUBLIC_SITE_URL + `/${locale}/news/${article.slug}`,
+  }}
+/>
 
       {/* Social Footer (Optional) */}
       <footer className="mt-12 flex justify-center border-t border-white/5 pt-8">

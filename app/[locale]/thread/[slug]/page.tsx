@@ -6,6 +6,7 @@ import { MessageSquare, Calendar, User, Tag } from "lucide-react";
 import { getTranslations, getLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import ShareButton from "@/components/share/share-button";
 
 // --- DYNAMIC SEO ---
 export async function generateMetadata({
@@ -34,9 +35,8 @@ export async function generateMetadata({
   const url = `${siteUrl}/${locale}/thread/${thread.slug}`;
   const imageUrl = `${siteUrl}/icons/icon-512.png`;
 
-  const description = `Join the discussion about ${
-    thread.categories?.[0]?.name || "sports"
-  } on SportKorner. Share your insights and read community opinions.`;
+  const description = `Join the discussion about ${thread.categories?.[0]?.name || "sports"
+    } on SportKorner. Share your insights and read community opinions.`;
 
   return {
     metadataBase: new URL(siteUrl),
@@ -239,7 +239,16 @@ export default async function ThreadPage({
           <div className="mt-12">
             <ReplyForm threadId={thread.documentId} />
           </div>
+        <ShareButton
+          data={{
+            title: thread.title,
+            description: thread.excerpt,
+            image: process.env.NEXT_PUBLIC_SITE_URL + "/icons/icon-512.png",
+            url: process.env.NEXT_PUBLIC_SITE_URL + `/${locale}/threads/${thread.slug}`,
+          }}
+        />
         </div>
+
 
         {/* Sidebar */}
         <aside className="lg:w-80 shrink-0">

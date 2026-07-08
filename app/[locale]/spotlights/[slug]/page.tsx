@@ -7,6 +7,7 @@ import { Calendar, Share2, Star, History, Play, Trophy } from "lucide-react";
 import Sidebar from "@/lib/components/layout/sidebar";
 import TalentSideBar from "@/components/talents-sidebar";
 import { Metadata } from "next";
+import ShareButton from "@/components/share/share-button";
 // --- DYNAMIC SEO ---
 export async function generateMetadata({
     params,
@@ -129,7 +130,7 @@ export default async function SingleSpotlightPage({
     // Determine target structural layout blueprint (falls back to fallback style)
     const type = article.type || "european_highlight";
     const isProfileType = type === "legend" || type === "rising_star";
-
+    const imageUrl = process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + article.coverImage.url
     return (
         <main className="min-h-screen pb-20" dir={isAr ? 'rtl' : 'ltr'}>
 
@@ -243,7 +244,14 @@ export default async function SingleSpotlightPage({
                                 <p className="italic text-slate-500">Description content details unavailable.</p>
                             )}
                         </div>
-
+                        <ShareButton
+                            data={{
+                                title: article.title,
+                                description: article.excerpt,
+                                image: imageUrl,
+                                url: process.env.NEXT_PUBLIC_SITE_URL + `/${locale}/spotlights/${article.slug}`,
+                            }}
+                        />
                         {/* Interactive Share Row */}
                         <div className="mt-16 pt-8 border-t border-white/5 flex items-center justify-between">
                             <button className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-500 hover:text-orange-500 transition-colors">

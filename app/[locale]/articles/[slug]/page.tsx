@@ -6,6 +6,7 @@ import Link from "next/link";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
 import { Metadata } from "next";
+import ShareButton from "@/components/share/share-button";
 
 // --- SEO METADATA ---
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -96,7 +97,7 @@ export default async function SingleArticlePage({ params }: { params: Promise<{ 
       "name": article.author?.username || "Community Member",
     }],
   };
-
+  const imageUrl = process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL + article.coverImage.url
   return (
     <article className="max-w-4xl mx-auto py-12 px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       {/* 1. Inject JSON-LD */}
@@ -155,9 +156,19 @@ export default async function SingleArticlePage({ params }: { params: Promise<{ 
         prose-headings:italic prose-headings:font-black prose-headings:uppercase">
         <BlocksRenderer content={article.content} />
       </div>
-
+      <br />
+      <br />
+      <ShareButton
+        data={{
+          title: article.title,
+          description: article.excerpt,
+          image: imageUrl,
+          url: process.env.NEXT_PUBLIC_SITE_URL + `/${locale}/articles/${article.slug}`,
+        }}
+      />
       <footer className="mt-16 p-8 rounded-3xl bg-white/5 border border-white/5 italic text-sm text-slate-500">
         {t("disclaimer")}
+
       </footer>
     </article>
   );
