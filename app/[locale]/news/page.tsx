@@ -97,7 +97,7 @@ export default async function NewsPage({ searchParams }: Props) {
                 : t("description")}
             </p>
           </div>
-          <div className="flex w-full items-end">
+          <div className="flex w-full items-end justify-end">
             <NewsSearch currentQuery={query} currentCategory={category} />
           {/* Close Filter Button */}
           {(category || query) && (
