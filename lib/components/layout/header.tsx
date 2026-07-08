@@ -16,6 +16,7 @@ import HeaderSearch from "./search";
 import { getTranslations } from "next-intl/server";
 import LanguageSwitcher from "./LanguageSwitcher";
 import MobileNav from "./MobileNav";
+import SearchBar from "@/components/search-bar";
 
 export default async function Header() {
   const user = await getMe();
@@ -75,10 +76,7 @@ export default async function Header() {
           {/* Right: Actions */}
           <div className="flex items-center gap-2 sm:gap-4">
             {/* Search Toggle for Mobile Only */}
-            <button title="Search" className="md:hidden p-2 text-slate-400 hover:text-white transition-colors">
-              <Search size={20} />
-            </button>
-
+           <SearchBar />
             <div className="hidden sm:block">
               <LanguageSwitcher />
             </div>
