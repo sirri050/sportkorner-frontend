@@ -65,7 +65,7 @@ export default async function SearchPage({
   );
   const hasAnyResults = threadList.length > 0 || newsList.length > 0 || spotlightsList.length > 0;
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 py-12" dir={isAr ? 'rtl' : 'ltr'}>
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6" dir={isAr ? 'rtl' : 'ltr'}>
       <div className="flex flex-col lg:flex-row gap-12">
         <div className="flex-1 space-y-10">
 
@@ -92,7 +92,7 @@ export default async function SearchPage({
             <div className="flex items-center gap-2 text-slate-500">
               <Info size={14} />
               <p className="text-xs font-black uppercase tracking-widest">
-                {t("found", { count: threadList.length })}
+                {t("found", { count: mergedResults.length })}
               </p>
             </div>
           </header>

@@ -43,8 +43,8 @@ export default function SearchBar() {
             </button>
 
             {open && (
-                <div className="search-container absolute left-1/2 top-full z-50 w-[calc(100%-1rem)] max-w-md -translate-x-1/2 rounded-xl border bg-white p-1 shadow-xl">
-                    <div className="flex w-full items-center gap-2">
+                <div className="search-container absolute left-1/2 top-full z-50 w-[calc(100%-1rem)] max-w-md -translate-x-1/2 rounded-xl border bg-white p-0.5 shadow-xl">
+                    <div className="flex w-full items-center gap-1">
                         <input
                             ref={inputRef}
                             type="search"
@@ -53,13 +53,14 @@ export default function SearchBar() {
                             onKeyDown={(e) => {
                                 if (e.key === "Enter") search();
                             }}
-                            placeholder="Search here..."
-                            className="min-w-0 flex-1 rounded-lg border px-3 py-2 text-black outline-none focus:ring-2"
+                            placeholder="Search the Arena..."
+                            className=" min-w-0 flex-1 bg-slate-900 border border-white/5 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all"
+
                         />
 
                         <button
                             onClick={search}
-                            className="shrink-0 rounded-lg bg-brand-primary px-4 py-2 text-white"
+                            className="shrink-0 rounded-xl bg-brand-primary px-4 py-2 text-xs text-white"
                         >
                             Search
                         </button>
