@@ -84,10 +84,13 @@
     "notFound": "Thread not found"
   },
   "SearchPage": {
+    "searchSystem":"Search System",
     "title": "Search Results for:",
     "found": "Found {count} matches",
     "noResults": "No discussions found. Try different keywords.",
-    "resultsFor": "Searching for "
+    "resultsFor": "Searching for ",
+    "noResultsTitle": "No Matches Found",
+    "noResultsDesc": "Try using different keywords or check your spelling."
   },
   "Register": {
     "title": "Join the Arena",

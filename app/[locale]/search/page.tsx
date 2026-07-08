@@ -4,6 +4,10 @@ import Sidebar from "@/lib/components/layout/sidebar";
 import { getTranslations, getLocale } from "next-intl/server";
 import { Metadata } from "next";
 import { Search, Info } from "lucide-react";
+import SpotlightCard from "@/lib/components/cards/spotlight";
+import NewsCard from "@/lib/components/cards/news";
+
+
 
 // --- SEO: Prevent indexing of search result pages ---
 export async function generateMetadata({ 
@@ -36,11 +40,12 @@ export default async function SearchPage({
   const query = sParams.q || "";
   const t = await getTranslations("SearchPage");
   const isAr = locale === 'ar';
-
   // Fetch results based on query and current locale
-  const results = query ? await searchThreads(query, locale) : { data: [] };
-  const threadList = results.data || [];
-
+  const {threads, news, spotlights} =  await searchThreads(query, locale)
+  const threadList = threads.data || [];
+  const newsList= news?.data || [];
+  const spotlightsList= spotlights?.data || [];
+  const hasAnyResults= threadList.length > 0 || newsList.length > 0 || spotlightsList.length > 0;
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 py-12" dir={isAr ? 'rtl' : 'ltr'}>
       <div className="flex flex-col lg:flex-row gap-12">
@@ -76,24 +81,38 @@ export default async function SearchPage({
 
           {/* Results Area */}
           <div className="flex flex-col gap-6">
-            {threadList.length > 0 ? (
+            {spotlightsList?.length>0 && (
+              spotlightsList.map((spotlight: any) => (
+                <SpotlightCard key={spotlight.documentId || spotlight.id} item={spotlight} />
+              ))
+            )}
+            {/* news */}
+             {newsList.length > 0 && (
+              newsList.map((news: any) => (
+                <NewsCard key={news.documentId || news.id} news={news} />
+              ))
+            )}
+            {/* threads */}
+            {threadList.length > 0 && (
               threadList.map((thread: any) => (
                 <ThreadCard key={thread.documentId || thread.id} thread={thread} />
               ))
-            ) : (
-              <div className="glass p-20 md:p-32 text-center rounded-[3rem] border border-dashed border-white/10 bg-white/[0.01]">
-                <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-8">
-                    <Search size={32} className="text-slate-700" />
-                </div>
-                <h3 className="text-2xl font-black uppercase italic text-slate-400 mb-4">
-                    {t("noResultsTitle") || "No Matches Found"}
-                </h3>
-                <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px] max-w-xs mx-auto leading-relaxed">
-                  {t("noResultsDesc") || "Try using different keywords or check your spelling."}
-                </p>
-              </div>
-            )}
+             )}
           </div>
+
+          {!hasAnyResults && (
+            <div className="glass p-20 md:p-32 text-center rounded-[3rem] border border-dashed border-white/10 bg-white/[0.01]">
+              <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-8">
+                <Search size={32} className="text-slate-700" />
+              </div>
+              <h3 className="text-2xl font-black uppercase italic text-slate-400 mb-4">
+                {t("noResultsTitle") || "No Matches Found"}
+              </h3>
+              <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px] max-w-xs mx-auto leading-relaxed">
+                {t("noResultsDesc") || "Try using different keywords or check your spelling."}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Sidebar - Fixed width for consistent layout */}

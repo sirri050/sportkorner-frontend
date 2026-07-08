@@ -2,18 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 
-export default function SpotlightCard({ item, isPriority = false }: { item: any, isPriority?: boolean }) {
-    const hasImage = !!item.coverImage?.url;
+export default function NewsCard({ news, isPriority = false }: { news: any, isPriority?: boolean }) {
+    const hasImage = !!news.coverImage?.url;
 
     return (
         <Link
-            href={`/spotlights/${item.slug}`}
+            href={`/news/${news.slug}`}
             className="group relative block aspect-[16/9] overflow-hidden rounded-[2.5rem] bg-slate-900 shadow-2xl transition-transform active:scale-95"
         >
             {hasImage ? (
                 <Image
-                    src={`${process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL}${item.coverImage.url}`}
-                    alt={item.title}
+                    src={`${process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL}${news.coverImage.url}`}
+                    alt={news.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                     priority={isPriority}
@@ -30,11 +30,11 @@ export default function SpotlightCard({ item, isPriority = false }: { item: any,
 
             {/* Content */}
             <div className="absolute bottom-0 p-8 md:p-12 space-y-4 w-full">
-                <span className="inline-block bg-orange-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full italic tracking-widest shadow-lg">
-                    {item.category?.name || "Spotlight"}
+                  <span className="inline-block bg-orange-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full italic tracking-widest shadow-lg">
+                    {"News"}
                 </span>
                 <h2 className={`font-black uppercase italic tracking-tighter leading-none text-white group-hover:text-orange-500 transition-colors ${isPriority ? 'text-3xl md:text-5xl' : 'text-2xl md:text-3xl'}`}>
-                    {item.title}
+                    {news.title}
                 </h2>
             </div>
         </Link>
