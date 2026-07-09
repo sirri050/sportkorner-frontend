@@ -28,7 +28,8 @@
     "tournaments": "Tournaments",
     "news": "News",
     "worldCup": "World Cup 2026",
-    "articles": "Articles"
+    "articles": "Articles",
+    "worldCupMap": "World Cup Map"
   },
   "Sidebar": {
     "majorSports": "Major Sports",
@@ -84,7 +85,7 @@
     "notFound": "Thread not found"
   },
   "SearchPage": {
-    "searchSystem":"Search System",
+    "searchSystem": "Search System",
     "title": "Search Results for:",
     "found": "Found {count} matches",
     "noResults": "No discussions found. Try different keywords.",
@@ -192,24 +193,40 @@
   },
   "WorldCup": {
     "metadata": {
-      "title": "2026 World Cup GIS Experience | SportKorner",
-      "description": "Interactive stadium mapping and geospatial analytics for the 2026 World Cup."
+      "title": "2026 World Cup GIS | Live Map Tracking",
+      "description": "Experience the 2026 World Cup through our immersive live GIS map platform. Track stadiums, matches, and team dynamics in real-time."
     },
-    "liveGIS": "Live GIS Data Feed",
+    "liveGIS": "Live GIS Platform",
     "worldCup": "World Cup",
     "gisExperience": "GIS Experience",
-    "gisDescription": "Explore every host city, stadium metric, and logistical hub using our proprietary ArcGIS mapping solution.",
-    "mapTitle": "Interactive World Cup 2026 Venue Map",
-    "howToUse": "User Protocol",
-    "clickVenues": "Select individual markers to view stadium capacity, weather, and altitude data.",
-    "viewTeamInfo": "Track team training camps and regional logistics across North America.",
-    "realTimeSchedules": "Filter map layers by match dates to see venue availability.",
-    "techBy": "Powered By",
-    "mobileDisclaimer": "* Optimal functionality requires a desktop resolution.",
-    "launchAppTitle": "Launch Interactive Dashboard",
-    "launchAppDesc": "Open our standalone geospatial application to track tournament stadium telemetry, transit systems, and team dynamics.",
-    "enterExperience": "Enter Live GIS Map",
-    "subdomainNotice": "This experience is hosted on a separate subdomain to ensure optimal performance and security for our users. You will be redirected to a dedicated environment where you can explore the World Cup GIS data without any interruptions."
+    "gisDescription": "Discover stadiums, track team routes, and explore live stats in a complete interactive geospatial experience.",
+    "launchAppTitle": "Launch Immersive Map",
+    "launchAppDesc": "Open our standalone high-performance geospatial application to track live tournament dynamics, transit heatmaps, and stadium telemetry.",
+    "enterExperience": "Enter Fullscreen App",
+    "installAppDetails": "For the best experience, install our application directly to your device. On mobile, tap ",
+    "then": "then",
+    "onDesktop": " On desktop, click the install icon (↓) in your browser's address bar.",
+    "howToUse": "How to Use",
+    "clickVenues": "Click on pins to explore stadium telemetry and host city details.",
+    "viewTeamInfo": "Select team icons to view basecamps and current standings.",
+    "realTimeSchedules": "Use the timeline slider to track real-time match schedules.",
+    "techBy": "Technology By",
+    "subdomainNotice": "* Opens in a separate secure sandbox window for enhanced GPU hardware acceleration rendering.",
+    "installAppHeading": "Install the Web App",
+    "installAppSubheading": "Get the native experience on your device in two easy steps.",
+    "installSteps": {
+      "iosTitle": "iOS (Safari)",
+      "iosStep1": "Tap the Share button",
+      "iosStep1b": "at the bottom.",
+      "iosStep2": "Scroll down and select 'Add to Home Screen'.",
+      "androidTitle": "Android (Chrome)",
+      "androidStep1": "Tap the menu",
+      "androidStep1b": "top right.",
+      "androidStep2": "Select 'Install app' or 'Add to Home screen'.",
+      "desktopTitle": "Desktop",
+      "desktopStep1": "Look for the install icon in the URL bar.",
+      "desktopStep2": "Click it and follow the prompt to install."
+    }
   },
   "SpotlightGrid": {
     "the": "The",
@@ -229,8 +246,8 @@
     "archiveDesc": "Revisit the greatest moments and figures in sports history.",
     "viewArchive": "View Archive",
     "fullArchive": "Enter Full Archive",
-    "lagend":"Influence / Legend",
-    "risingStar":"Rising Star"
+    "lagend": "Influence / Legend",
+    "risingStar": "Rising Star"
   },
   "Articles": {
     "community": "Community",
@@ -330,16 +347,16 @@
     "noArchive": "No spotlights archived yet.",
     "shareArticle": "Share this article",
     "featured": "Featured Artist:",
-    "talentSpotlight":"Talent Spotlight"
+    "talentSpotlight": "Talent Spotlight"
   },
-    "Talents":{
-    "talentDirectory":"Talent Directory",
-    "sport":"Sports",
-    "talent":"Talents",
-    "talentDescription":"Explore legendary athletes and the next generation of rising stars shaping the future of sport.",
-    "viewProfile":"View Profile",
-    "legend":"LEGEND",
-    "risingStar":"RIGING STAR ",
-    "all":"ALL"
+  "Talents": {
+    "talentDirectory": "Talent Directory",
+    "sport": "Sports",
+    "talent": "Talents",
+    "talentDescription": "Explore legendary athletes and the next generation of rising stars shaping the future of sport.",
+    "viewProfile": "View Profile",
+    "legend": "LEGEND",
+    "risingStar": "RIGING STAR ",
+    "all": "ALL"
   }
 }

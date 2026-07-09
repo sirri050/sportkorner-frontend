@@ -10,6 +10,7 @@ import {
   Search,
   Rss,
   Medal,
+  Map,
 } from "lucide-react";
 import { getMe } from "@/lib/actions/auth";
 import HeaderSearch from "./search";
@@ -60,10 +61,17 @@ export default async function Header() {
               </Link>
               <Link
                 href="/news?category=world-cup"
-                className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors"
+                className="flex items-start gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors"
               >
                 <Medal size={16} />
                 {t("worldCup")}
+              </Link>
+              <Link
+                href="/world-cup-map"
+                className="flex items-start gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors"
+              >
+                <Map size={16} />
+                {t("worldCupMap")}
               </Link>
             </nav>
           </div>

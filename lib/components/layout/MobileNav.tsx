@@ -12,6 +12,7 @@ import {
   LogOut,
   Rss,
   Medal,
+  Map,
 } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -92,6 +93,14 @@ export default function MobileNav({ user }: { user: any }) {
               >
                 <Medal size={16} />
                 {t("worldCup")}
+              </Link>
+
+               <Link
+                href="/world-cup-map"
+                 className="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 text-lg font-black uppercase italic transition-all"
+              >
+                <Map size={16} />
+                {t("worldCupMap")}
               </Link>
 
             {user && (
