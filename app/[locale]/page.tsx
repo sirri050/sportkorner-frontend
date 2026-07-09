@@ -73,9 +73,9 @@ export default async function Home({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      
+
       <NewsGrid />
-      
+
       {/* 1. Full-Width Trending Section */}
       {trendingThreads.length > 0 && (
         <section className="space-y-8">
@@ -117,9 +117,9 @@ export default async function Home({
             </div>
 
             {/* Actions Section */}
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap w-fit items-center justify-end gap-4">
               {/* Filter Switcher */}
-              <div className="flex bg-slate-900/50 p-1 rounded-2xl border border-white/5">
+              <div className="flex w-full ml-auto justify-end bg-slate-900/50 p-1 rounded-2xl border border-white/5">
                 <button className="px-6 py-2.5 bg-orange-600 rounded-xl text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-orange-900/20 flex items-center gap-2">
                   <Flame size={14} /> {t("hot")}
                 </button>
@@ -136,6 +136,15 @@ export default async function Home({
               >
                 <MessageSquarePlus size={16} />
                 {t("startTopic")}
+              </Link>
+            </div>
+            <div className="flex flex-wrap flex-col h-full justify-between">
+              <h3 className="tracking-tightest">Join The Discusion</h3>
+              <Link href="/register" className="mt-1 px-6 py-2.5 bg-orange-600 rounded-xl text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-orange-900/20 flex items-center gap-2">
+                Register
+              </Link>
+                  <Link href="/login" className="mt-1 px-6 py-2.5 bg-slate-900/50 rounded-xl text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-orange-900/20 flex w-full justify-center items-center gap-2">
+                  Login
               </Link>
             </div>
           </div>

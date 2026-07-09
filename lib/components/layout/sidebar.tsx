@@ -12,7 +12,7 @@ export default async function Sidebar({ locale }: { locale: string }) {
   const [categoriesRes, tagsRes] = await Promise.all([
     fetchStrapi("categories", {
       locale: locale, // Important: Fetch translated category names
-      fields: ["name", "slug"],
+      fields: ["name", "slug", "isSport"],
       populate: ["parent"],
     }),
     fetchStrapi("tags", {
@@ -23,10 +23,9 @@ export default async function Sidebar({ locale }: { locale: string }) {
     }),
   ]);
 
-  const majorSports = categoriesRes.data.filter((cat: any) => !cat.parent);
+  let majorSports = categoriesRes.data.filter((cat: any) => !cat.parent && cat.isSport);
   const leagues = categoriesRes.data.filter((cat: any) => !!cat.parent);
   const tags = tagsRes.data;
-
   return (
     <aside className="hidden lg:flex flex-col gap-6 w-80 shrink-0 sticky top-24 h-fit">
 
