@@ -7,9 +7,10 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 type NewsSearchProps = {
 	currentQuery?: string;
 	currentCategory?: string;
+	locale:string
 };
 
-export default function NewsSearch({ currentQuery = "", currentCategory }: NewsSearchProps) {
+export default function NewsSearch({ currentQuery = "", currentCategory, locale }: NewsSearchProps) {
 	const [open, setOpen] = useState(false);
 	const [query, setQuery] = useState(currentQuery);
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -76,7 +77,9 @@ export default function NewsSearch({ currentQuery = "", currentCategory }: NewsS
 			</button>
 
 			{open && (
-				<div className="absolute -right-10 top-full z-20 mt-3 w-[min(26rem,calc(100vw-2rem))] rounded-3xl border border-white/10 bg-slate-950/95 p-3 shadow-2xl shadow-black/40 backdrop-blur-xl">
+				<div
+					className={` absolute top-full left-1/2 -translate-x-1/2 mt-3 z-20 ${locale === "en" ? "md:-translate-x-1/1" : "md:translate-x-1"} w-[calc(100vw-2rem)]   max-w-md    rounded-3xl border border-white/10 bg-slate-950/95 p-3 shadow-2xl shadow-black/40 backdrop-blur-xl`}
+				>
 					<div className="flex items-center gap-2">
 						<input
 							ref={inputRef}

@@ -66,7 +66,6 @@ export default async function NewsPage({ searchParams }: Props) {
     },
   });
   const newsItems = response.data || [];
-  console.log("news got: ", newsItems?.map((elem: any) => elem.title));
   const isWorldCupFilter = category === "world-cup";
   const pagination = response.meta?.pagination || { page: 1, pageSize: 25, pageCount: 1, total: newsItems?.length };
   return (
@@ -97,18 +96,24 @@ export default async function NewsPage({ searchParams }: Props) {
                 : t("description")}
             </p>
           </div>
-          <div className="flex w-full items-end justify-end">
-            <NewsSearch currentQuery={query} currentCategory={category} />
-          {/* Close Filter Button */}
-          {(category || query) && (
-            <Link
-              href={`/${locale}/news`}
-              className="p-3 bg-white/5 hover:bg-white/10 rounded-full text-slate-500 hover:text-white transition-colors"
-              title="Clear Filter"
-            >
-              <X size={20} />
-            </Link>
-          )}
+          <div className="w-full md:w-auto flex flex-col md:flex-row gap-8 items-center md:items-center justify-between">
+            <NewsSearch
+              currentQuery={query}
+              currentCategory={category}
+              locale={locale as string
+                
+              }
+            />
+
+            {(category || query) && (
+              <Link
+                href={`/${locale}/news`}
+                className="p-3 bg-white/5 hover:bg-white/10 rounded-full text-slate-500 hover:text-white transition-colors"
+                title="Clear Filter"
+              >
+                <X size={20} />
+              </Link>
+            )}
           </div>
         </div>
       </header>
@@ -173,15 +178,15 @@ export default async function NewsPage({ searchParams }: Props) {
         })}
       </div>
 
-{pagination.pageCount > 1 && (
-  <div className="mt-12 p-6 rounded-[2.5rem] glass border border-white/5 flex justify-center">
-    <Pagination
-      currentPage={pagination.page}
-      totalPages={pagination.pageCount}
-      keepParams={{ category, q: query }}
-    />
-  </div>
-)}
+      {pagination.pageCount > 1 && (
+        <div className="mt-12 p-6 rounded-[2.5rem] glass border border-white/5 flex justify-center">
+          <Pagination
+            currentPage={pagination.page}
+            totalPages={pagination.pageCount}
+            keepParams={{ category, q: query }}
+          />
+        </div>
+      )}
 
       {/* Empty State */}
       {newsItems.length === 0 && (
