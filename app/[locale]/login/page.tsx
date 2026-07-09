@@ -44,7 +44,7 @@ export default function LoginPage() {
               {t("labels.password")}
             </label>
             <Link
-              href="#"
+              href="/forgot-password"
               className="text-[10px] font-bold text-brand-primary hover:underline"
             >
               {t("forgot")}
