@@ -73,7 +73,9 @@ export default async function Home({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-
+      
+      <NewsGrid />
+      
       {/* 1. Full-Width Trending Section */}
       {trendingThreads.length > 0 && (
         <section className="space-y-8">
@@ -90,7 +92,6 @@ export default async function Home({
         </section>
       )}
 
-      <NewsGrid />
 
       {/* 2. Editorial Highlights / Spotlights */}
       <section>
