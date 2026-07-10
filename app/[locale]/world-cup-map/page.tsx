@@ -21,8 +21,8 @@ export default async function WorldCupGISPage() {
   const locale = await getLocale();
   const isAr = locale === 'ar';
 
-  const mapSubdomain = "https://map.sportkorner.com";
-  const secureAppUrl = `${mapSubdomain}?lang=${locale}`;
+  const mapSubdomain = locale==="en" ? "https://map.sportkorner.com" : `https://armap.sportkorner.com`;
+  const secureAppUrl = `${mapSubdomain}`;
 
   return (
     <main className="max-w-7xl mx-auto py-8 md:py-16 px-4 mb-12" dir={isAr ? 'rtl' : 'ltr'}>
