@@ -37,12 +37,11 @@ export default async function WorldCupGISPage() {
 
         {/* Scaled safely starting from text-3xl on small mobile */}
         <h1 className="text-3xl sm:text-4xl md:text-7xl font-black uppercase italic tracking-tight md:tracking-tighter leading-none break-words">
-          2026 <span className="text-orange-500">{t("worldCup")}</span> {t("gisExperience")}
+          <span className="text-orange-500">{t("worldCupMapHeading")}</span>
         </h1>
 
         <p className="text-slate-400 max-w-3xl text-sm md:text-lg font-medium leading-relaxed mx-auto md:mx-0">
-          {/* {t("gisDescription")} */}
-          The ultimate FIFA World Cup 2026 companion app. Explore participating teams, group standings, host cities, match schedules and results, and tournament information—all in one place.
+          {t("worldCupMapSubtitle")}
         </p>
       </header>
 

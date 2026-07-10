@@ -29,8 +29,8 @@
     "news": "News",
     "worldCup": "World Cup 2026",
     "articles": "Articles",
-    "worldCupMap": "World Cup Map"
-  },
+    "worldCupMap": "World Cup Geo-App"
+    },
   "Sidebar": {
     "majorSports": "Major Sports",
     "topLeagues": "Top Leagues",
@@ -198,9 +198,11 @@
     },
     "liveGIS": "Live GIS Platform",
     "worldCup": "World Cup",
+    "worldCupMapHeading": "FIFA World Cup 2026 Geo-APP",
+    "worldCupMapSubtitle":"The ultimate FIFA World Cup 2026 companion app. Explore participating teams, group standings, host cities, match schedules and results, and tournament information—all in one place.",
     "gisExperience": "GIS Experience",
     "gisDescription": "Discover stadiums, track team routes, and explore live stats in a complete interactive geospatial experience.",
-    "launchAppTitle": "Launch Immersive Map",
+    "launchAppTitle": "Launch the World Cup Geo App",
     "launchAppDesc": "Open our standalone high-performance geospatial application to track live tournament dynamics, transit heatmaps, and stadium telemetry.",
     "enterExperience": "Enter Fullscreen App",
     "installAppDetails": "For the best experience, install our application directly to your device. On mobile, tap ",
