@@ -13,7 +13,10 @@
       "description": "The ultimate hub for sports news, discussions, and live tournament tracking."
     },
     "news": "News",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "joinDiscusion": "Join The Discusion",
+    "register": "Register",
+    "login": "Login"
   },
   "Header": {
     "theArena": "The Arena",
@@ -29,8 +32,9 @@
     "news": "News",
     "worldCup": "World Cup 2026",
     "articles": "Articles",
-    "worldCupMap": "World Cup Geo-App"
-    },
+    "worldCupMap": "World Cup Geo-App",
+    "search": "Search the Arena"
+  },
   "Sidebar": {
     "majorSports": "Major Sports",
     "topLeagues": "Top Leagues",
@@ -209,9 +213,9 @@
     "then": "then",
     "onDesktop": " On desktop, click the install icon (↓) in your browser's address bar.",
     "howToUse": "How to Use",
-    "clickVenues": "Click on pins to explore stadium telemetry and host city details.",
-    "viewTeamInfo": "Select team icons to view basecamps and current standings.",
-    "realTimeSchedules": "Use the timeline slider to track real-time match schedules.",
+    "clickVenues": "Click on Groups to see the teams ranking after the group stage.",
+    "viewTeamInfo": "Click on Host Cities all match results, goals scorers, red cards, superior players of the matches and number of spectators in stadiums.",
+    "realTimeSchedules": "The app will keep up with updates on teams' top scorers, most caps, and best results, to provide you with a full summary of the FIFA World Cup 2026, the best world cup ever!",
     "techBy": "Technology By",
     "subdomainNotice": "* Opens in a separate secure sandbox window for enhanced GPU hardware acceleration rendering.",
     "installAppHeading": "Install the Web App",
