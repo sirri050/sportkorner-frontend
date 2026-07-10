@@ -99,7 +99,7 @@ export default function MobileNav({ user }: { user: any }) {
                 href="/world-cup-map"
                  className="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 text-lg font-black uppercase italic transition-all"
               >
-                <Map size={16} />
+                <img src="/assets/worldcup_logo.png" className="w-5 h-5 rounded-full object-cover" alt="world cup" loading="lazy" />
                 {t("worldCupMap")}
               </Link>
 

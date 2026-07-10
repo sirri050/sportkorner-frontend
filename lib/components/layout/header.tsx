@@ -70,7 +70,7 @@ export default async function Header() {
                 href="/world-cup-map"
                 className="flex items-start gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors"
               >
-                <Map size={16} />
+                <img src="/assets/worldcup_logo.png" className="w-5 h-5 rounded-full object-cover" alt="world cup" loading="lazy" />
                 {t("worldCupMap")}
               </Link>
             </nav>
@@ -78,13 +78,13 @@ export default async function Header() {
 
           {/* Center: Search (Hidden on mobile, visible on tablet+) */}
           <div className="hidden md:block flex-1 max-w-md mx-8">
-            <HeaderSearch />
+            <HeaderSearch placeholder={t("search")} />
           </div>
 
           {/* Right: Actions */}
           <div className="flex items-center gap-2 sm:gap-4">
             {/* Search Toggle for Mobile Only */}
-           <SearchBar />
+           <SearchBar placeholder={t("search")} />
             <div className="hidden sm:block">
               <LanguageSwitcher />
             </div>
