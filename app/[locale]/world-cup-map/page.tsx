@@ -1,6 +1,7 @@
 import { Globe, Map as MapIcon, Info, ShieldCheck, ArrowUpRight, MonitorSmartphone, Smartphone, Share, MoreVertical, MonitorDown } from "lucide-react";
 import { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
+import Image from "next/image";
 
 // --- DYNAMIC METADATA ---
 export async function generateMetadata(): Promise<Metadata> {
@@ -21,7 +22,7 @@ export default async function WorldCupGISPage() {
   const locale = await getLocale();
   const isAr = locale === 'ar';
 
-  const mapSubdomain = locale==="en" ? "https://map.sportkorner.com" : `https://armap.sportkorner.com`;
+  const mapSubdomain = locale === "en" ? "https://map.sportkorner.com" : `https://armap.sportkorner.com`;
   const secureAppUrl = `${mapSubdomain}`;
 
   return (
@@ -50,7 +51,7 @@ export default async function WorldCupGISPage() {
 
         {/* Left Column: Map Portal + App Install Instructions */}
         <div className="lg:col-span-2 flex flex-col gap-6">
-          
+
           {/* Gateway Action Portal */}
           <div className="min-h-[280px] bg-gradient-to-br from-slate-950 via-slate-900 to-orange-950/10 rounded-[2rem] md:rounded-[3rem] border border-white/5 overflow-hidden relative shadow-2xl group flex flex-col items-center justify-center p-6 md:p-8 text-center">
             {/* Background effects */}
@@ -67,9 +68,9 @@ export default async function WorldCupGISPage() {
                 <h2 className="text-xl md:text-3xl font-black tracking-tight uppercase italic text-white leading-tight">
                   {t("launchAppTitle") || "Launch Immersive Map"}
                 </h2>
-                <p className="text-slate-400 text-xs font-medium leading-relaxed px-2 md:px-4">
+                {/* <p className="text-slate-400 text-xs font-medium leading-relaxed px-2 md:px-4">
                   {t("launchAppDesc") || "Open our standalone high-performance geospatial application to track live tournament dynamics."}
-                </p>
+                </p> */}
               </div>
 
               <a
@@ -92,7 +93,7 @@ export default async function WorldCupGISPage() {
 
           {/* Enhanced PWA Download Instructions */}
           <div className="glass p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border border-white/5 bg-slate-900/40 shadow-xl space-y-6">
-            
+
             {/* Header */}
             <div className="flex items-center gap-4 border-b border-white/5 pb-5">
               <div className="p-3 bg-white/5 rounded-2xl text-slate-300 flex-shrink-0">
@@ -110,7 +111,7 @@ export default async function WorldCupGISPage() {
 
             {/* Step-by-Step Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4">
-              
+
               {/* iOS Instructions */}
               <div className="space-y-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
                 <h4 className="text-sm font-bold text-slate-200 flex items-center gap-2">
@@ -121,8 +122,8 @@ export default async function WorldCupGISPage() {
                   <li className="flex items-start gap-2">
                     <span className="text-orange-500 font-black mt-0.5">1.</span>
                     <span>
-                      {t("installSteps.iosStep1") || "Tap the Share button"} 
-                      <Share size={12} className="inline mx-1 text-slate-300"/> 
+                      {t("installSteps.iosStep1") || "Tap the Share button"}
+                      <Share size={12} className="inline mx-1 text-slate-300" />
                       {t("installSteps.iosStep1b") || "at the bottom."}
                     </span>
                   </li>
@@ -143,8 +144,8 @@ export default async function WorldCupGISPage() {
                   <li className="flex items-start gap-2">
                     <span className="text-orange-500 font-black mt-0.5">1.</span>
                     <span>
-                      {t("installSteps.androidStep1") || "Tap the menu"} 
-                      <MoreVertical size={12} className="inline mx-1 text-slate-300"/> 
+                      {t("installSteps.androidStep1") || "Tap the menu"}
+                      <MoreVertical size={12} className="inline mx-1 text-slate-300" />
                       {t("installSteps.androidStep1b") || "top right."}
                     </span>
                   </li>
@@ -192,22 +193,24 @@ export default async function WorldCupGISPage() {
 
             <ul className="space-y-4 md:space-y-5">
               <li className="flex gap-3 md:gap-4 items-start">
-                <span className="text-base md:text-lg select-none">📍</span>
+                <img src="/assets/ball.png" className="w-8 h-8 rounded-full object-cover" alt="football" loading="lazy" />
                 <p className="text-xs text-slate-300 font-bold leading-relaxed">{t("clickVenues")}</p>
               </li>
               <li className="flex gap-3 md:gap-4 items-start">
-                <span className="text-base md:text-lg select-none">⚽</span>
+                <img src="/assets/flag.png" className="w-8 h-8 rounded-full object-cover" alt="flag" loading="lazy" />
+
                 <p className="text-xs text-slate-300 font-bold leading-relaxed">{t("viewTeamInfo")}</p>
               </li>
               <li className="flex gap-3 md:gap-4 items-start">
-                <span className="text-base md:text-lg select-none">📅</span>
+                <img src="/assets/worldcup_logo.png" className="w-8 h-8 rounded-full object-cover" alt="world cup" loading="lazy" />
+
                 <p className="text-xs text-slate-300 font-bold leading-relaxed">{t("realTimeSchedules")}</p>
               </li>
             </ul>
           </div>
 
           {/* Technology Attribution */}
-          <div className="glass p-6 md:p-8 rounded-[1.5rem] md:rounded-[2.5rem] border border-white/5 bg-orange-600/[0.03] flex flex-col gap-3 md:gap-4">
+          {/* <div className="glass p-6 md:p-8 rounded-[1.5rem] md:rounded-[2.5rem] border border-white/5 bg-orange-600/[0.03] flex flex-col gap-3 md:gap-4">
             <div className="flex items-center gap-2 text-slate-600">
               <ShieldCheck size={15} />
               <p className="text-[10px] font-black uppercase tracking-[0.2em]">{t("techBy")}</p>
@@ -218,11 +221,11 @@ export default async function WorldCupGISPage() {
             <p className="text-[10px] text-slate-500 font-medium leading-none">
               Official ArcGIS Integration Platform
             </p>
-          </div>
+          </div> */}
 
-          <p className="text-[9px] md:text-[10px] text-slate-500 font-bold text-center px-4 italic leading-relaxed block">
+          {/* <p className="text-[9px] md:text-[10px] text-slate-500 font-bold text-center px-4 italic leading-relaxed block">
             {t("subdomainNotice") || "* Opens in a separate secure sandbox window for enhanced GPU hardware acceleration rendering."}
-          </p>
+          </p> */}
         </aside>
       </div>
     </main>
