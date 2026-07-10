@@ -96,8 +96,8 @@ export default async function WorldCupGISPage() {
 
             {/* Header */}
             <div className="flex items-center gap-4 border-b border-white/5 pb-5">
-              <div className="p-3 bg-white/5 rounded-2xl text-slate-300 flex-shrink-0">
-                <MonitorSmartphone size={28} />
+              <div className="p-1 bg-white/5 rounded-2xl text-slate-300 flex-shrink-0">
+                <img src="/assets/desktop_mobile.png" alt="Desktop and Mobile" className="w-10 h-10 object-contain rounded-xl" />
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-black uppercase italic text-white tracking-tight">
