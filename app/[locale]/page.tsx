@@ -139,12 +139,12 @@ export default async function Home({
               </Link>
             </div>
             <div className="flex flex-wrap flex-col h-full justify-between">
-              <h3 className="tracking-tightest">Join The Discusion</h3>
+              <h3 className="tracking-tightest">{t("joinDiscusion")}</h3>
               <Link href="/register" className="mt-1 px-6 py-2.5 bg-orange-600 rounded-xl text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-orange-900/20 flex items-center gap-2">
-                Register
+               {t("register")}
               </Link>
                   <Link href="/login" className="mt-1 px-6 py-2.5 bg-slate-900/50 rounded-xl text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-orange-900/20 flex w-full justify-center items-center gap-2">
-                  Login
+                  {t("login")}
               </Link>
             </div>
           </div>

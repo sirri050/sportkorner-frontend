@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { Search, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function SearchBar() {
+export default function SearchBar({ placeholder }: { placeholder: string }) {
+    console.log(placeholder);
     const [open, setOpen] = useState(false);
     const [query, setQuery] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
@@ -53,7 +54,7 @@ export default function SearchBar() {
                             onKeyDown={(e) => {
                                 if (e.key === "Enter") search();
                             }}
-                            placeholder="Search the Arena..."
+                            placeholder={placeholder}
                             className=" min-w-0 flex-1 bg-slate-900 border border-white/5 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all"
 
                         />
