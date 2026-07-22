@@ -128,16 +128,16 @@ export async function replyToThreadAction(formData: any): Promise<{ success: boo
 
     const userData = await userMeResponse.json();
     const userId = userData.id; // This is the verified User ID from Strapi
-
     // 2. Inject the authoritative user ID safely into the payload
     const completePayload = {
       ...formData,
+      thread: formData.thread,
       author: userId, // Attaching the relation field name you set in Strapi
     };
 
     // 3. Send the full package to Strapi
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/posts`,
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/posts?locale=${encodeURIComponent(locale)}`,
       {
         method: "POST",
         headers: {
