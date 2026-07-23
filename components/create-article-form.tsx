@@ -75,6 +75,20 @@ export default function CreateArticleForm({
         />
       </div>
 
+      {/* Optional Original Slug (for translations) */}
+      {locale === "ar" && (
+        <div className="space-y-2">
+          <label className="text-xs font-black uppercase text-slate-500">
+            Original article slug or English title
+          </label>
+          <input
+            name="originalSlug"
+            placeholder="Paste English slug or title (optional)"
+            className="w-full bg-slate-900 border border-white/10 rounded-2xl p-4 text-white focus:border-orange-500"
+          />
+        </div>
+      )}
+
       {/* Cover Image */}
       <div className="space-y-2">
         <label className="text-xs font-black uppercase text-slate-500">
