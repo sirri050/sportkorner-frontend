@@ -1,7 +1,6 @@
 "use server";
 
 import { cookies } from "next/headers";
-import slugify from "slugify";
 
 export type CreateArticleState = {
   success: boolean;
@@ -31,17 +30,17 @@ export async function createCommunityArticle(
     const excerpt = formData.get("excerpt") as string;
     const imageFile = formData.get("image") as File;
 
-    // Generate slug
-    const randomId = Math.random().toString(36).substring(2, 7);
+    // If the user supplied an originalSlug (e.g. English slug or title) prefer that
+    const originalSlugInput = (formData.get("originalSlug") as string) || "";
+    const slugSource = originalSlugInput.trim() !== "" ? originalSlugInput : title;
 
-    const generatedSlug =
-      slugify(title, {
-        lower: true,
-        strict: true,
-        locale: locale === "ar" ? "ar" : "en",
-      }) +
-      "-" +
-      randomId;
+    // Generate a locale-neutral slug so translations can reuse the same value
+      const generatedSlug = slugSource
+        .toLowerCase()
+        .trim()
+        .replace(/[^\n+\w\s-]/g, "")
+        .replace(/[\s_-]+/g, "-")
+        .replace(/^-+|-+$/g, "");
 
     // Upload image
     let imageId = null;
@@ -117,8 +116,16 @@ export async function createCommunityArticle(
       }));
 
     // Create article
+    console.log("Creating article with data: ", {
+      title,
+      slug: generatedSlug,
+      excerpt: excerpt || rawContent.substring(0, 150) + "...",
+      content: contentBlocks,
+      coverImage: imageId,
+      locale,
+    });
     const articleRes = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles`,
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles?locale=${encodeURIComponent(locale)}`,
       {
         method: "POST",
         headers: {
@@ -132,7 +139,6 @@ export async function createCommunityArticle(
             excerpt: excerpt || rawContent.substring(0, 150) + "...",
             content: contentBlocks,
             coverImage: imageId,
-            locale,
           },
         }),
       },
@@ -146,7 +152,7 @@ export async function createCommunityArticle(
         message: errorData?.error?.message ?? "Failed to create article.",
       };
     }
-
+    console.log("Article Response: ", await articleRes.json());
     return {
       success: true,
       message: "Article created successfully",
