@@ -205,10 +205,19 @@ export default async function SingleNews({
               )}
             </div>
           )}
+
+
+          {article.description &&
+            <div
+              dangerouslySetInnerHTML={{
+                __html: article.description,
+              }}
+            />
+          }
         </div>
       </div>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <ShareButton
         data={{
           title: article.title,
