@@ -14,6 +14,7 @@ async function TalentSideBar({
     locale: string;
 }) {
     const t = await getTranslations("Spotlights");
+    const talentsTranslation = await getTranslations("Talents");
 
     const res = await fetchStrapi("spotlights", {
         locale,
@@ -46,7 +47,7 @@ async function TalentSideBar({
                         </p>
 
                         <h3 className="text-white font-black uppercase italic text-lg">
-                            {type === "legend" ? "Legends" : "Rising Stars"}
+                            {talentsTranslation(type === "legend" ? "legend" : "risingStar")}
                         </h3>
                     </div>
                 </div>
